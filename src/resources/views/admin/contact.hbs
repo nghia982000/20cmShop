@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div class="app">
+        <div class="appAdmin">
+            <div class="admin_header">
+                <div class="admin_logo">
+                    <div><i class="far fa-hand-peace"></i></div>
+                    <div class="admin_logo-name">
+                        <p>20CmShop Admin</p>
+                    </div>
+                </div>
+                <div class="admin_search">
+                    <input type="text" placeholder="Tìm kiếm">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="admin_user">
+                    <div class="admin_user-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="admin_container">
+                <div class="admin_menu">
+                    <div class="admin_item">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <p>Trang chủ</p>
+                    </div>
+                   <div class="admin_item">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <p>Quản lý sản phẩm</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-users-cog"></i>
+                        <p>Quản lý người dùng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-tasks"></i>
+                        <p>Quản lý đơn hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-phone-square"></i>
+                        <p>Câu hỏi từ khách hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-newspaper"></i>
+                        <p>Quản lý tin tức</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Thống kê</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-cogs"></i>
+                        <p>Cài đặt</p>
+                    </div>
+                </div>
+                <div class="admin_body">
+                    <div class="admin_listContact-header">
+                        Quản lý lời nhắn từ khách hàng
+                    </div>
+                    <div class="admin_listContact-content">
+                        <div class="admin_listContact-table">
+                            <div class="admin_listContact-row">
+                                <div class="admin_listContact-cell-STT">
+                                    <h3>STT</h3>
+                                </div>
+                                <div class="admin_listContact-cell-name">
+                                    <h3>Họ tên</h3>
+                                </div>
+                                <div class="admin_listContact-cell-email">
+                                    <h3>Email</h3>
+                                </div>
+                                <div class="admin_listContact-cell-phone">
+                                    <h3>Số điện thoại</h3>
+                                </div>
+                                <div class="admin_listContact-cell-address">
+                                    <h3>Địa chỉ</h3>
+                                </div>
+                                <div class="admin_listContact-cell-message">
+                                    <h3>Lời nhắn</h3>
+                                </div>
+                                <div class="admin_listContact-cell-operation">
+                                    <h3>Thao tác</h3>
+                                </div>
+                            </div>
+                            {{#each contact}}
+                            <div class="admin_listContact-row">
+                                <div class="admin_listContact-cell-STT">
+                                    <p>{{@index}}</p>
+                                </div>
+                                <div class="admin_listContact-cell-name">
+                                    <p>{{this.name}}</p>
+                                </div>
+                                <div class="admin_listContact-cell-email">
+                                    <p>{{this.email}}</p>
+                                </div>
+                                <div class="admin_listContact-cell-phone">
+                                    <p>{{this.phoneNumber}}</p>
+                                </div>
+                                <div class="admin_listContact-cell-address">
+                                    <p>{{this.address}}</p>
+                                </div>
+                                <div class="admin_listContact-cell-message">
+                                    <p>{{this.message}}</p>
+                                </div>
+                                <div class="admin_listContact-cell-operation">
+                                    <button onclick="btnDelete('{{this._id}}')">Xóa</button>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="admin_listContact-row none">
+                                <p>Không có lời nhắn nào</p>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        const container=document.querySelector('.admin_container')
+        function btnDelete(id) {
+            const htmls=`
+                <div class="adminContact">
+                    <div class="adminContact-content">
+                        <h3>Xóa câu hỏi khỏi hệ thống</h3>
+                        <div class="adminContact-btn">
+                            <div class="adminContact-btn-item" onclick="deleteContact('${id}')">
+                                <p>Xóa</p>
+                            </div>
+                            <div class="adminContact-btn-item" onclick="cancel()">
+                                <p>Thoát</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+            container.insertAdjacentHTML('beforeend',htmls)
+        }
+        function deleteContact(id){
+            const url='/admin/deleteContact'
+            const options = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body:JSON.stringify({
+                    id:id
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then(() =>{
+                window.location.href=`/admin/contact`
+            })
+            .catch(error =>{
+                console.log('lỗi api')
+            })
+        }
+        function cancel(){
+            const elementNotification=document.querySelector('.adminContact')
+            elementNotification.remove()
+        }
+    </script>
+</body>
+</html>

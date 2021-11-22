@@ -1,0 +1,73 @@
+.containerRegister{
+    padding: 50px 20px;
+    width:40%;
+    background-color: #f8f1f1;
+    margin: 130px auto 50px auto;
+    border-radius: 10px;
+    box-shadow:0 1px 5px rgba(0,0,0,0.3);
+}
+
+.register-title{
+    font-size:20px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.register-form{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.register-form-item{
+    flex:50%;
+    max-width: 50%;
+}
+.register-form-item.userName{
+    flex:100%;
+    max-width: 100%;
+}
+.register-form-item-text{
+    font-weight: bold;
+    padding: 25px 15px 10px 15px;
+}
+.register-form-item-inp{
+    height:35px;
+    padding:0 15px;
+}
+.register-form-item-inp input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: 1px solid #dddddd;
+    padding-left: 10px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.register-form-item .form-message{
+    padding:0 15px;
+    font-size:14px;
+    color: #f11717;    
+}
+.register-btn{
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+.register-btn button{
+    background-color: #b39329;
+    height:40px;
+    width:200px;
+    color: #fff;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+}
+.register-btn button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}

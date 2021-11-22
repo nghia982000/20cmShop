@@ -1,0 +1,136 @@
+.admin_listContact-header{
+    padding:20px 0;
+    text-align:center;
+    font-size:25px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.admin_listContact-content{
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+// .admin_listContact-table{
+
+// }
+
+.admin_listContact-row:first-child{
+    background-color: #b39329;
+    border-radius: 10px 10px 0 0;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+.admin_listContact-row{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.admin_listContact-cell-STT{
+    flex:5%;
+    max-width: 5%;
+}
+
+.admin_listContact-cell-name{
+    flex:10%;
+    max-width: 10%;
+}
+
+.admin_listContact-cell-email{
+    flex:15%;
+    max-width: 15%;
+}
+
+.admin_listContact-cell-phone{
+    flex:15%;
+    max-width: 15%;
+}
+
+.admin_listContact-cell-address{
+    flex:20%;
+    max-width: 20%;
+}
+
+.admin_listContact-cell-message{
+    flex:25%;
+    max-width: 25%;
+}
+
+.admin_listContact-cell-operation{
+    flex:10%;
+    max-width: 10%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.admin_listContact-cell-operation button{
+    height: 30px;
+    outline: none;
+    border-radius: 3px;
+    border: none;
+    font-size:16px;
+    background-color:#b39329;
+    color: #fff;
+    padding:5px;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+ }
+.admin_listContact-cell-operation button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}
+//admin notification delete ---------------------------
+.adminContact{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.adminContact-content{
+    width: 600px;
+    background-color: #f3f3f3;
+    margin: 100px auto 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    padding:20px;
+}
+
+.adminContact-content h3{
+    text-transform: uppercase;
+    color: #b39329;
+    text-align: center;
+    padding: 20px;
+    font-size:25px;
+}
+
+.adminContact-btn{
+    display: flex;
+    align-items:center;
+    padding:5px;
+    justify-content:center;
+}
+
+.adminContact-btn-item{
+    height:30px;
+    width: 150px;
+    background-color: #b39329;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    color:#fff;
+    margin: 0 10px;
+    border-radius:3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.adminContact-btn-item:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}
+.admin_listContact-row.none{
+    justify-content:center;
+}
+
+

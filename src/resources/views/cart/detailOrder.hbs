@@ -1,0 +1,142 @@
+<div class="detailOrder_container">
+    <div class="detailOrder-title">
+        <h2>Chi tiết đơn hàng</h2>
+    </div>
+    <div class="detailOrder-info">
+        <h3>THÔNG TIN NHẬN HÀNG</h3>
+        <div class="detailOrder-info-content">
+            <div class="detailOrder-info-content-row ">
+                <h3>Họ và tên:</h3>
+                <p>{{order.info.firstname}} {{order.info.lastname}}</p>
+            </div>
+            <div class="detailOrder-info-content-row ">
+                <h3>Số điện thoại:</h3>
+                <p>{{order.info.phoneNumber}}</p>
+            </div>
+            <div class="detailOrder-info-content-row ">
+                <h3>Email:</h3>
+                <p>{{order.info.email}}</p>
+            </div>
+            <div class="detailOrder-info-content-row ">
+                <h3>Địa chỉ:</h3>
+                <p>{{order.info.address}}</p>
+            </div>
+            <div class="detailOrder-info-content-row ">
+                <h3>Ghi chú:</h3>
+                <p>{{order.info.note}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="detailOrder-products">
+        <h3>SẢN PHẨM</h3>
+        <div class="detailOrder-product-row">
+            <div class="detailOrder-product-cell sttProduct">
+                <h3>STT</h3>
+            </div>
+            <div class="detailOrder-product-cell nameProduct">
+                <h3>Tên sản phẩm</h3>
+            </div>
+            <div class="detailOrder-product-cell priceProduct">
+                <h3>Giá tiền</h3>
+            </div>
+            <div class="detailOrder-product-cell sizeProduct">
+                <h3>Size</h3>
+            </div>
+            <div class="detailOrder-product-cell quatityProduct">
+                <h3>Số lượng</h3>
+            </div>
+        </div>
+        {{#each order.cart}}
+        <div class="detailOrder-product-row">
+            <div class="detailOrder-product-cell sttProduct">
+                <p>{{@index}}</p>
+            </div>
+            <div class="detailOrder-product-cell nameProduct">
+                <p>{{this.name}}</p>
+            </div>
+            <div class="detailOrder-product-cell priceProduct">
+                <p>{{formatNumber this.price}}đ</p>
+            </div>
+            <div class="detailOrder-product-cell sizeProduct">
+                <p>{{this.size}}</p>
+            </div>
+            <div class="detailOrder-product-cell quatityProduct">
+                <p>{{this.quatity}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="detailOrder shipping">
+        <h3>Tiền ship:</h3>
+        <p>99,999đ</p>
+    </div>
+    <div class="detailOrder totalMoney">
+        <h3>Tổng hóa đơn:</h3>
+        <p>{{totalProductOrder order.cart}}đ</p>
+    </div>
+    <div class="detailOrder pay">
+        <h3>Hình thức thanh toán:</h3>
+        <p>{{order.info.payment}}</p>
+    </div>
+    <div class="detailOrder code">
+        <h3>Mã đơn hàng:</h3>
+        <p>{{order.code}}</p>
+    </div>
+    <div class="detailOrder date">
+        <h3>Ngày đặt hàng:</h3>
+        <p>{{order.time}}</p>
+    </div>
+    <div class="detailOrder status">
+        <h3>Tình trạng đơn hàng:</h3>
+        <p>{{order.status}}</p>
+    </div>
+    <div class="detailOrder-operation">
+        <button onclick="deleteOrder('{{order.code}}')">Hủy đơn</button>
+        <button onclick="back()">Quay lại</button>
+    </div>
+    
+</div>
+<script>
+    const containerOrder=document.querySelector('.detailOrder_container')
+    function back() {
+        return window.location.href='/account'
+    }
+    function deleteOrder(code){
+        const htmls=`
+                <div class="deleteOrder">
+                    <div class="deleteOrder-container">
+                        <div class="deleteOrder-title">
+                            <h2>Bạn có chắc hủy đơn hàng này</h2>
+                        </div>
+                        <div class="deleteOrder-btn">
+                            <button onclick="btnDelete('${code}')">Đồng ý</button>
+                            <button onclick="btnCancel()">Hủy bỏ</button>
+                        </div>
+                    </div>
+                </div>
+            `
+        containerOrder.insertAdjacentHTML('beforeend',htmls)
+    }
+    function btnCancel(){
+        const elementDelete=document.querySelector('.deleteOrder')
+        elementDelete.remove()
+    }
+    function btnDelete(code){
+        const url=`/cart/deleteOrder`
+        const options={
+            method: "DELETE",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                code: code,
+            })
+        }
+        fetch(url, options)
+        .then(response => response.json())
+        .then(()=>{
+            return window.location.href='/account'
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+    }
+</script>

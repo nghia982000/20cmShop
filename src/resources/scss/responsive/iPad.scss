@@ -1,0 +1,370 @@
+@media (min-width:740px) and (max-width:1023px){
+    body{
+        -webkit-tap-highlight-color: transparent;
+    }
+    //header--------------------------------------------------------------
+    .header{
+        padding: 0 20px;
+    }
+    .header__menu{
+        display:none;
+    }
+    .header__menu_icon{
+        display:block;
+        font-size:20px;
+        color: #b39329;
+    }
+    .header__menu_icon:hover{
+        color: #717171;
+    }
+    .menuOverlay{
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.3);
+        animation: fadeIn linear 0.2s;
+    }
+    .menuTab{
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width:350px;
+        background-color:rgba(246, 246, 247, 1);
+        padding:40px 0px;
+        animation:scroll linear 0.2s;
+    }
+    .menuTab-item{
+        display: flex;
+        align-items: center;
+        padding:15px;
+    }
+    .menuTab-item p{
+        font-size:20px;
+    }
+    .menuTab-item p:first-child{
+        width: 35px;
+    }
+    .menuTab-item:hover{
+        background-color: #f3f3f3;
+    }
+    .logohelmetMenuTab{
+        width: 25px;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+    }
+    .menuTab-close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size:30px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+    }
+    @keyframes fadeIn {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+    @keyframes scroll{
+        from{
+            transform: translateX(-100%);
+            opacity:0 ;
+        }
+        to{
+            transform: translateY(0%);
+            opacity: 1;
+        }
+    }
+    //home page------------------------------------------------------------------------------
+    .slide{
+        height:330px;
+    }
+    //----
+    .service{
+        max-width: calc(100% - 40px);
+    }
+    .service__item-content{
+        padding: 10px;
+    }
+    .service__item-logo{
+        width:35px;
+        height:35px;
+    }
+    .service__item-logo i{
+        font-size:18px;
+    }
+    .service__item-content h3{
+        font-size:14px;
+    }
+    .service__item-content p{
+        font-size:14px;
+        padding: 0;
+    }
+    //----
+    .adv__right{
+        display: none;
+    }
+    .adv{
+        padding: 10px 20px 10px 20px;
+        height:400px;
+        width: 100%;
+    }
+    .adv__left-border{
+        border-radius: 10px;
+    }
+    //----
+    .product{
+        padding:10px 20px;
+    }
+    .product__content-item{
+        min-width: 25%;
+        padding:15px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    //----
+    .news{
+        height:500px;
+    }
+    .news__body{
+        padding:0 20px;
+        height: 100%;
+    }
+    .btnNews.left{
+        left:-10px;
+    }
+    .btnNews.right{
+        right:-10px;
+    }
+    .news__content{
+        min-width: calc(100% / 2);
+        padding:0 15px;
+    }
+    //----------------
+    .trademark-border{
+        margin:0 20px;
+        overflow: hidden;
+    }
+    .trademark{ 
+        display: flex;
+        height:35px;
+        margin:20px 0;
+        animation: scrolling 30s linear infinite;
+    }
+    .trademark__item-img{
+        height: 35px;
+    }
+    @keyframes scrolling{
+        0%{
+            transform: translateX(0)
+        }
+        100%{
+            transform: translateX(-968px)
+        }
+    }
+    //footer-----------------------------------------------------------------------------
+    .footer__header{
+        padding: 0 20px;
+        height:70px;
+    }
+    .footer__header-email-inp input{
+        width:250px;
+        height:30px;
+    }
+    .footer__header-email-btn{
+        height:30px;
+        width: 80px;
+    }
+    .footer__container{
+        padding:0 20px;
+    }
+    .footer__register-email{
+        width: 150px;
+        height:30px;
+    }
+    .footer__register-email input{
+        width: 100px;
+    }
+    .footer__register-email i{
+        font-size:12px;
+    }
+    .footer__content{
+        padding:50px 0;
+    }
+    .footer__copyright{
+        padding: 15px 0;
+    }
+    //product--------------------------------------------------------------------------------------------------------------------------------
+    .container__header-menu{
+        display: none;
+    }
+    .containerProduct{
+        padding: 80px 20px 0 20px;
+    }
+    .container__header-tools-search{
+        width:250px;
+        height:35px;
+    }
+    .container__header-tools{
+        justify-content:center;
+    }
+    .container__header-tools p{
+        display:none;
+    }
+    .container__header-tools-select{
+        display:none;
+    }
+    //-----------------
+    .container__option{
+        flex:1;
+    }
+
+    .container__product-item-name h3{
+        font-size:16px;
+    }
+    
+    .container__option-heighleights-item-name h3{
+        font-size:16px;
+    }
+
+
+    .container__product{
+        flex:3;
+    }
+    .container__product-item{
+        flex:calc(100% / 3);
+        max-width:calc(100% / 3);
+        padding: 0 0 10px 10px;
+        cursor: pointer;
+    }
+    //new-----------------------------------------------------------------------------
+    .containerNews{
+        padding: 80px 20px 0 20px;
+    }
+    .container__content-posts-item{
+        flex:calc( 100% / 2);
+        max-width:calc( 100% / 2);
+        padding:0 0 30px 30px;
+        cursor: pointer;
+    }
+    //contact-----------------------------------------------------------------------
+    .container__contact_content{
+        display: flex;
+        padding: 20px;
+        flex-flow: column;
+    }
+    .container__contact-map{
+        display: none;
+    }
+    //formLogin--------------------------------------------------------------------------
+    .containerLogin{
+        width: 60%;
+    }
+    //detaiproduct-------------------------------------------------------------------
+    .containerDetail{
+        padding-top: 80px;
+    }
+    .container__detailProduct{
+        padding: 20px;
+    }
+    .detailProduct-picture{
+        padding: 10px;
+        margin: 0;
+    }
+    .detailProduct-info{
+        margin-top:20px;
+    }
+    .detailProduct-info-name{
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+    .detailProduct-info-price{
+        padding: 10px 0;
+    }
+    .detailProduct-info-quatity{
+        padding: 10px 0;
+    }
+    .detailProduct-info-btn p{
+        width: 120px;
+        height: 35px;
+        font-size: 13px;
+    }
+    // //account--------------------------------------------------------------------------
+    .containerAccount{
+        padding: 80px 20px;
+    }
+    .webcome p{
+        font-size: 25px;
+        text-align: center;
+    }
+    .container__detail__content{
+        padding: 10px;
+        box-shadow: none;
+        border: none;
+    }
+    .container__navbar-border{
+        display: flex;
+    }
+    .container__content-account{
+        flex-flow: column;
+    }
+    .container__detail{
+        padding: 20px 0 0 0;
+    }
+    .container__navbar-item{
+        flex:1;
+        padding: 0;
+        justify-content: center;
+    }
+    .content-order-cell p{
+        text-align: center;
+    }
+    //cart ----------------------------------------------------------------------------------
+    .containerCart{
+        padding: 80px 20px;
+    }
+    .container__content-cart{
+        display: flex;
+        flex-flow: column;
+    }
+    .container__pay{
+        margin-top: 50px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0, 0.3);
+        padding: 20px;
+    }
+    .pay-discount{
+        padding: 20px;
+    }
+    .discount-inp{
+        padding-left: 0;
+    }
+    //order---------------------------------------------------------------------------------
+    .containerOrder{
+        flex-flow: column;
+        padding:80px 20px;
+    }
+    .container__infoBill{
+        padding: 0 0 50px 0;
+    }
+    .infoBill-inp-item-input{
+        padding: 0 10px;
+    }
+    .infoBill-inp-item-text{
+        padding: 10px;
+    }
+    .container__orderUser{
+        padding:0 ;
+    }
+}

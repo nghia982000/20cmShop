@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div class="app">
+        <div class="appAdmin">
+            <div class="admin_header">
+                <div class="admin_logo">
+                    <div><i class="far fa-hand-peace"></i></div>
+                    <div class="admin_logo-name">
+                        <p>20CmShop Admin</p>
+                    </div>
+                </div>
+                <div class="admin_search">
+                    <input type="text" placeholder="Tìm kiếm">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="admin_user">
+                    <div class="admin_user-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="admin_container">
+                <div class="admin_menu">
+                    <div class="admin_item">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <p>Trang chủ</p>
+                    </div>
+                   <div class="admin_item">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <p>Quản lý sản phẩm</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-users-cog"></i>
+                        <p>Quản lý người dùng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-tasks"></i>
+                        <p>Quản lý đơn hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-phone-square"></i>
+                        <p>Câu hỏi từ khách hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-newspaper"></i>
+                        <p>Quản lý tin tức</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Thống kê</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-cogs"></i>
+                        <p>Cài đặt</p>
+                    </div>
+                </div>
+                <div class="admin_body">
+                    <div class="admin_listUsers-header">
+                        Quản lý người dùng
+                    </div>
+                    <div class="admin_listUsers-content">
+                        <div class="admin_listUsers-table">
+                            <div class="admin_listUsers-row">
+                                <div class="admin_listUsers-cell-STT">
+                                    <h3>STT</h3>
+                                </div>
+                                <div class="admin_listUsers-cell-name">
+                                    <h3>Họ tên</h3>
+                                </div>
+                                <div class="admin_listUsers-cell-userName">
+                                    <h3>Tên tài khoản</h3>
+                                </div>
+                                <div class="admin_listUsers-cell-phone">
+                                    <h3>Số điện thoại</h3>
+                                </div>
+                                <div class="admin_listUsers-cell-email">
+                                    <h3>Email</h3>
+                                </div>
+                                <div class="admin_listUsers-cell-operation">
+                                    <h3>Thao tác</h3>
+                                </div>
+                            </div>
+                            {{#each account}}
+                            <div class="admin_listUsers-row">
+                                <div class="admin_listUsers-cell-STT">
+                                    <p>{{@index}}</p>
+                                </div>
+                                <div class="admin_listUsers-cell-name">
+                                    <p>{{this.firstname}} {{this.lastname}}</p>
+                                </div>
+                                <div class="admin_listUsers-cell-userName">
+                                    <p>{{this.userName}}</p>
+                                </div>
+                                <div class="admin_listUsers-cell-phone">
+                                    <p>{{this.phoneNumber}}</p>
+                                </div>
+                                <div class="admin_listUsers-cell-email">
+                                    <p>{{this.email}}</p>
+                                </div>
+                                <div class="admin_listUsers-cell-operation">
+                                    <button onclick="btnView('{{this._id}}')">View</button>
+                                    <button onclick="btnDelete('{{this._id}}')">Xóa</button>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="admin_listUsers-row none">
+                                <p>Không có người dùng nào</p>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        const container = document.querySelector('.admin_container')
+        function btnView(id){
+            const url='/admin/users'
+            const options={
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: id,
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                const htmls=`
+                    <div class="admin_viewUser">
+                        <div class="admin_viewUser-container">
+                            <div class="admin_viewUser-title">
+                                <h2>Thông tin tài khoản người dùng</h2>
+                            </div>
+                            <div class="admin_viewUser-info">
+                                <div class="admin_viewUser-info-row">
+                                    <h3>Họ:</h3>
+                                    <p>${data.firstname}</p>
+                                    <h3>Tên:</h3>
+                                    <p>${data.lastname}</p>
+                                </div>
+                                <div class="admin_viewUser-info-row">
+                                    <h3>Tên đăng nhập:</h3>
+                                    <p>${data.userName}</p>
+                                </div>
+                                <div class="admin_viewUser-info-row">
+                                    <h3>Số điện thoại:</h3>
+                                    <p>${data.phoneNumber}</p>
+                                </div>
+                                <div class="admin_viewUser-info-row">
+                                    <h3>Email:</h3>
+                                    <p>${data.email}</p>
+                                </div>
+                                <div class="admin_viewUser-info-row">
+                                    <h3>Mật khẩu:</h3>
+                                    <p>${data.password}</p>
+                                </div>
+                            </div>
+                            <div class="admin_viewUser-btn">
+                                <button onclick="btnCloseView()">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                `
+                container.insertAdjacentHTML('beforeend',htmls)
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        }
+        function btnCloseView() {
+            const elementCancelView = document.querySelector('.admin_viewUser')
+            elementCancelView.remove()
+        }
+        function btnCloseDelete() {
+            const elementCancelDelete = document.querySelector('.admin_deleteUser')
+            elementCancelDelete.remove()
+        }
+        function btnDelete(id){
+            const htmls=`
+                <div class="admin_deleteUser">
+                    <div class="admin_deleteUser-container">
+                        <div class="admin_deleteUser-title">
+                            <h2>Xóa tài khoản vĩnh viễn khỏi hệ thống</h2>
+                        </div>
+                        <div class="admin_deleteUser-btn">
+                            <button onclick="deleteUser('${id}')">Đồng ý</button>
+                            <button onclick="btnCloseDelete()">Hủy bỏ</button>
+                        </div>
+                    </div>
+                </div>
+            `
+            container.insertAdjacentHTML('beforeend',htmls)
+        }
+        function deleteUser(id) {
+            const url='/admin/users'
+            const options={
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: id,
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then(()=>{
+                return window.location.href='/admin/users'
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        }
+    </script>
+</body>
+</html>

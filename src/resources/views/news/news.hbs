@@ -1,0 +1,49 @@
+<div class="containerNews">
+    <div class="container__header">
+        <p>TIN TỨC</p>
+    </div>
+    <div class="container__content">
+        <div class="container__content-sidebar">
+            <div class="container__content-sidebar-posts">
+                <div class="container__content-sidebar-posts-header">
+                    <p>BÀI VIẾT MỚI</p>
+                </div>
+                <div class="container__content-sidebar-posts-items">
+                    {{#each news}}
+                    <a href="/news/detailNews/{{this._id}}">
+                        <div class="container__content-sidebar-posts-item">
+                            <div class="container__content-sidebar-posts-item-picture">
+                                <div class="container__content-sidebar-posts-item-img" style="background-image: url({{converArraytoString this.picture 1}})"></div>
+                            </div>
+                            <div class="container__content-sidebar-posts-item-title">{{this.title}}</div>
+                        </div>
+                    </a>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="container__content-posts">
+            <div class="container__content-posts-items">
+               {{#each news}}
+                <div class="container__content-posts-item">
+                    <div class="container__content-posts-item-border">
+                        <a href="/news/detailNews/{{this._id}}">
+                            <div class="container__content-posts-item-img" style="background-image: url({{converArraytoString this.picture 1}})"></div>
+                            <div class="container__content-posts-item-date">
+                                <p>{{formatDatetime this.createdAt}}</p>
+                            </div>
+                            <div class="container__content-posts-item-title">
+                                <p>{{this.title}}</p>
+                            </div>
+                            <div class="container__content-posts-item-line"></div>
+                            <div class="container__content-posts-item-content">
+                                <p>{{this.header}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

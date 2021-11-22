@@ -1,0 +1,170 @@
+<header class="header">
+    <div class="header__menu_icon" onclick="menuTab()">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <div class="header__logo">
+        <div><i class="fa fa-hand-peace-o" aria-hidden="true"></i></div>
+        <div class="header__logo-name">
+            <p>20CmShop</p>
+        </div>
+    </div>
+    <div class="header__menu">
+        <div class="header__menu-item">
+            <p class="header__menu-item-logo">
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </p>
+            <p>Trang chủ</p>
+        </div>
+        <div class="header__menu-item">
+            <p class="header__menu-item-logo">
+                <img src="/img/logoHelmet_1.svg" class="logohelmet">
+            </p>
+            <p>Sản phẩm</p>
+        </div>
+        <div class="header__menu-item">
+            <p class="header__menu-item-logo">
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+            </p>
+            <p>Tin tức</p>
+        </div>
+        <div class="header__menu-item">
+            <p class="header__menu-item-logo">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+            </p>
+            <p>Liên hệ</p>
+        </div>
+    </div>
+    <div class="header__option">
+        {{!-- <div class="header__option-search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+        <p>|</p> --}}
+        <div class="header__option-cart">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            {{!-- <div class="header__option-cart-none">
+                <p>Không có sản phẩm nào trong giỏ hàng.</p>
+            </div> --}}
+        </div>
+        <p>|</p>
+        <div class="header__option-user">
+            <i onclick="account()" class="fa fa-user-circle" aria-hidden="true"></i>
+            <div class="header__option-account">
+                <div class="header__option-user-account">
+                    <p class="header__option-user-account-login">Đăng nhập</p>
+                    <p class="header__option-user-account-register">Đăng ký</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menuOverlay"></div>
+    <div class="menuTab">
+        <div class="menuTab-item">
+            <p class="menuTab-item-logo">
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </p>
+            <p>Trang chủ</p>
+        </div>
+        <div class="menuTab-item">
+            <p class="menuTab-item-logo">
+                <img src="/img/logoHelmet_1.svg" class="logohelmetMenuTab">
+            </p>
+            <p>Sản phẩm</p>
+        </div>
+        <div class="menuTab-item">
+            <p class="menuTab-item-logo">
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+            </p>
+            <p>Tin tức</p>
+        </div>
+        <div class="menuTab-item">
+            <p class="menuTab-item-logo">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+            </p>
+            <p>Liên hệ</p>
+        </div>
+        <div class="menuTab-close"  onclick="back()">
+            <i class="fa fa-times" aria-hidden="true" ></i>
+        </div>
+    </div>
+</header>
+<script>
+    const $=document.querySelector.bind(document)
+    const $$=document.querySelectorAll.bind(document)
+    const tabs=$$('.header__menu-item')
+    const logo=$$('.header__menu-item-logo')
+    const cart=$('.header__option-cart')
+    const login=$('.header__option-user-account-login')
+    const register=$('.header__option-user-account-register')
+    const MENU_STORAGE_KEY='HELMET'
+
+    var app={
+        config:JSON.parse(sessionStorage.getItem(MENU_STORAGE_KEY)),
+        setconfig:function(key,value){
+            this.config[key]=value
+            sessionStorage.setItem(MENU_STORAGE_KEY,JSON.stringify(this.config))
+        },
+    }
+    function tabPage(tabs){
+        tabs.forEach(function(tab,index){
+            tab.onclick=function(){
+                switch(index){
+                    case 0:
+                        window.location.href ='/'
+                        app.setconfig('menu',index)
+                        break
+                    case 1:
+                        window.location.href ='/product'
+                        app.setconfig('menu',index)
+                        break
+                    case 2:
+                        window.location.href ='/news'
+                        app.setconfig('menu',index)
+                        break
+                    case 3:
+                        window.location.href ='/contact'
+                        app.setconfig('menu',index)
+                        break
+                }
+            }
+        })
+    }
+    function loadAC(){
+        app.config=(app.config===null)?({menu:0}):app.config
+        if(app.config.menu===4){
+            $('.header__menu-item-logo').classList.remove('logo-active')
+        }else{
+            logo[app.config.menu].classList.add('logo-active')
+        }
+    }
+    cart.onclick=function(){
+        window.location.href='/cart'
+        app.setconfig('menu',4)
+    }
+    login.onclick=function(){
+        window.location.href='/account/formLogin'
+        app.setconfig('menu',4)
+    }
+    register.onclick=function(){
+        window.location.href='/account/formRegister'
+        app.setconfig('menu',4)
+    }
+    tabPage(tabs)
+    loadAC()
+    function account(){
+        return window.location.href='/account'
+    }
+    function menuTab(){
+        const menuOverlay=document.querySelector('.menuOverlay')
+        const menuTab=document.querySelector('.menuTab')
+        menuOverlay.style.display="block"
+        menuTab.style.display="block"
+    }
+    function back(){
+        const menuOverlay=document.querySelector('.menuOverlay')
+        const menuTab=document.querySelector('.menuTab')
+        menuOverlay.style.display="none"
+        menuTab.style.display="none"
+    }
+    const menuTabItem=document.querySelectorAll('.menuTab-item')
+    tabPage(menuTabItem)
+</script>

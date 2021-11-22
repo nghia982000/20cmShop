@@ -1,0 +1,194 @@
+<div class="containerProduct">
+    <div class="container__header">
+        <div class="container__header-menu">
+            <div class="container__header-product">
+                <p>SẢN PHẨM</p>
+            </div>
+            {{!-- <div class="container__header-line">/</div>
+            <div class="container__header-item">
+                <p>AGV</p>
+            </div> --}}
+        </div>
+        <div class="container__header-tools">
+            <div class="container__header-tools-search">
+                <input type="text" placeholder="Search..." name="search">
+                <i onclick="quickSearch()" class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <p>Hiển thị một kết quả duy nhất</p>
+            <div class="container__header-tools-select">
+                <select name="select" id="container__header-tools-select">
+                    <option value="0">Thứ tự mặc định</option>
+                    <option value="1">Mới về</option>
+                    <option value="2">Bán chạy</option>
+                    <option value="3">Giá thấp đến cao</option>
+                    <option value="4">Giá cao xuống thấp</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="container__header-line"></div>
+    <div class="container__content">
+        <div class="container__option">
+            <div class="container__option-category">
+                <div class="container__option-category-header">
+                    <p>DANH MỤC SẢN PHẨM</p>
+                </div>
+                <div class="container__option-category-items">
+                    <p class="container__option-category-item allProduct active" onclick="tabAllItem()">Tất cả sản phẩm</p>
+                    {{#each trademark}}
+                    <p class="container__option-category-item {{this}}" onclick="tabItem('{{this}}')">Nón fullface {{this}}</p>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="container__option-heighleights">
+                <div class="container__option-heighleights-header">
+                    <p>SẢN PHẨM NỔI BẬT</p>
+                </div>
+                <div class="container__option-heighleights-items">
+                    {{#each product}}
+                    <a  href="/product/{{this._id}}">
+                        <div class="container__option-heighleights-item">
+                            <div class="container__option-heightleight-item-picture">
+                                <div class="container__option-heighleights-item-img" style="background-image: url({{converArraytoString this.image 0}})"></div>
+                            </div>
+                            <div class="container__option-heighleights-item-name">
+                                <h3>{{this.name}}</h3>
+                                <p>{{formatNumber this.price}}đ</p>
+                            </div>
+                        </div>
+                    </a>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="container__product">
+            {{#each product}}
+            <div class="container__product-item">
+                <div class="container__product-item-border">
+                    <div class="container__product-item-picture">
+                        <a  href="/product/{{this._id}}">
+                            <div class="container__product-item-img" style="background-image: url({{converArraytoString this.image 0}})"></div>
+                        </a>
+                    </div>
+                    <div class="container__product-item-name">
+                        <h3>{{this.name}}</h3>
+                        <p>{{formatNumber this.price}}đ</p>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<script>
+    //catagory
+    
+    function tabItem(item){
+        const remove=document.querySelector('.container__option-category-item.active')
+        const tab=document.querySelector(`.container__option-category-item.${item}`)
+        if(remove){
+            remove.classList.remove('active')
+        }
+        tabCategory(item)
+        tab.classList.add('active')
+    }
+    function tabAllItem(){
+        const remove=document.querySelector('.container__option-category-item.active')
+        const tab=document.querySelector('.container__option-category-item.allProduct')
+        if(remove){
+            remove.classList.remove('active')
+        }
+        tabCategory('')
+        tab.classList.add('active')
+    }
+
+    //call api
+    function tabCategory(item){
+        const url=`/product`
+        const options={
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({
+                item: item,
+            })
+        }
+        fetch(url,options)
+        .then(response => response.json())
+        .then(data => {
+            const listProduct=document.querySelector('.container__product')
+            const htmls=data.map(item =>{
+                return`
+                    <div class="container__product-item">
+                        <div class="container__product-item-border">
+                            <div class="container__product-item-picture">
+                                <a  href="/product/${item._id}">
+                                    <div class="container__product-item-img" style="background-image: url(${itemToArray(item.image,0)})"></div>
+                                </a>
+                            </div>
+                            <div class="container__product-item-name">
+                                <h3>${item.name}</h3>
+                                <p>${formatNumber(item.price)}đ</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            })
+            listProduct.innerHTML=htmls.join('')
+        })
+        .catch(error => {
+            console.log('Lỗi API')
+        })
+        
+    }
+    function itemToArray(arr,index){
+        return arr[index]
+    }
+    function formatNumber(num){
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+    }
+    // search
+    function quickSearch(){
+        const searchInput=document.querySelector('input[name="search"]').value
+        tabCategory(searchInput)
+    }
+
+    const elementSelect=document.querySelector('#container__header-tools-select')
+    elementSelect.onchange=function(e){
+        const item=e.target.value
+
+        const url='/product/arrangeProduct'
+        const options={
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({
+                item: item,
+            })
+        }
+        fetch(url,options)
+        .then(response => response.json())
+        .then(data => {
+            const listProduct=document.querySelector('.container__product')
+            const htmls=data.map(item =>{
+                return`
+                    <div class="container__product-item">
+                        <div class="container__product-item-border">
+                            <div class="container__product-item-picture">
+                                <a  href="/product/${item._id}">
+                                    <div class="container__product-item-img" style="background-image: url(${itemToArray(item.image,0)})"></div>
+                                </a>
+                            </div>
+                            <div class="container__product-item-name">
+                                <h3>${item.name}</h3>
+                                <p>${formatNumber(item.price)}đ</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            })
+            listProduct.innerHTML=htmls.join('')
+        })
+        .catch(error => {
+            console.log('Lỗi API')
+        })
+    }
+</script>

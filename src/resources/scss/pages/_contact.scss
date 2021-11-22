@@ -1,0 +1,210 @@
+.containerContact{
+    padding-top: 80px;
+}
+.container__background-title{
+    position: relative;
+}
+
+.container__background-title-img{
+    height: 150px;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    position: relative;
+}
+.container__background-title-text{
+    position: absolute;
+    top: 0;
+    height:100%;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+}
+.container__contact_content{
+    display: flex;
+    padding: 40px 80px;
+}
+
+.container__contact-map{
+    flex: 1;
+    padding:25px;
+}
+.mapContent{
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+}
+// .container__contact-map-img{
+//     padding-top: 100%;
+//     background-position: top center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     // border: 1px solid #dddddd;
+//     border-radius: 20px;
+//     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+// }
+.container__contact-detail{
+    flex: 1;
+    padding-top: 25px;
+}
+
+.container__contact-detail-first{
+    display: flex;
+}
+.container__contact-detail-picture{
+    flex: 1;
+
+}
+.container__contact-detail-img{
+    padding-top: 100%;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.container__contact-detail-info{
+    flex: 3;
+}
+
+.container__contact-detail-info-item{
+    display: flex;
+    margin-top:10px;
+}
+.container__contact-detail-info-item i{
+    width: 25px;
+    display: flex;
+    color: #717171;
+}
+/* .container__contact-detail-form{
+
+} */
+
+.container__contact-detail-form-header{
+    text-align: center;
+    margin: 40px 0;
+    font-size: 18px;
+}
+
+.container__contact-detail-form-inp{
+    margin:0 -5px;
+}
+
+.container__contact-detail-form-inp-infuser{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.container__contact-detail-form-inp-infuser-item{
+    flex:50%;
+    padding: 5px;
+    height:50px;
+    margin:10px 0;
+}
+.container__contact-detail-form-inp-infuser-item input{
+    width: 100%;
+    height: 100%;
+    outline:none;
+    padding: 0 10px;
+    // border: 1px solid #dddddd;
+    border-radius: 5px;
+    box-shadow:0 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+
+}
+.container__contact-detail-form-inp-infuser-item.message {
+    height:100px;
+    padding:5px;
+}
+.container__contact-detail-form-inp-infuser-item.message textarea{
+    
+    outline:none;
+    // border: 1px solid #dddddd;
+    border-radius:5px;
+    box-shadow:0 2px 5px rgba(0, 0, 0, 0.3);
+    padding:10px;
+    border: none;
+    width: 100%;
+}
+.container__contact-detail-form-send{
+    display: flex;
+    justify-content:center;
+    margin: 15px;
+    align-items: center;
+    
+}
+.container__contact-detail-form-send button{
+    height: 40px;
+    width: 200px;
+    background-color: #b39329;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius:5px;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+    outline: none;
+    border: none;
+    font-size:16px;
+}
+.container__contact-detail-form-send button:hover{
+    box-shadow:0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.form-messageContact{
+    font-size:14px;
+    color:#b39329;
+    padding:10px;
+}
+//----------------------------------------
+.notificationContact{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index: 5;
+    top: 0;
+    right: 0;
+    // background-color:#b39329;
+}
+.notificationContact-container{
+    width: 600px;
+    margin: 100px auto 0 auto;
+    background-color:#f3f3f3;
+    border: 1px solid #2222;
+    padding: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+}
+.notificationContact-title{
+    text-align: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    color: #b39329;
+}
+.notificationContact-btn{
+    display: flex;
+    justify-content:center;
+}
+.notificationContact-btn p{
+    height: 30px;
+    width: 200px;
+    margin: 10px;
+    // outline: none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#b39329;
+    border-radius:3px;
+    // border:none;
+    font-size:16px;
+    color:#fff;
+    cursor: pointer;
+}
+.notificationContact-btn button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}

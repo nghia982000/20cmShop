@@ -1,0 +1,178 @@
+<div id="toast"></div>
+<form class="containerOrder"id="infoBill">
+    <div class="container__infoBill">
+        <div class="infoBill-title">
+            <p>THÔNG TIN THANH TOÁN</p>
+        </div>
+        <div class="infoBill-inp" >
+            <div class="infoBill-inp-item">
+                <div class="infoBill-inp-item-text">
+                    <p>Họ</p>
+                </div>
+                <div class="infoBill-inp-item-input">
+                    <input type="text" placeholder="Nhập họ" id="firstname" name="firstname">
+                </div>
+                <span class="form-messageOrder"></span>
+            </div>
+            <div class="infoBill-inp-item">
+                <div class="infoBill-inp-item-text">
+                    <p>Tên</p>
+                </div>
+                <div class="infoBill-inp-item-input">
+                    <input type="text" placeholder="Nhập tên" id="lastname" name="lastname">
+                </div>
+                <span class="form-messageOrder"></span>
+            </div>
+            <div class="infoBill-inp-item">
+                <div class="infoBill-inp-item-text">
+                    <p>Số điện thoại</p>
+                </div>
+                <div class="infoBill-inp-item-input">
+                    <input type="text" placeholder="Nhập số điện thoại" id="phoneNumber" name="phoneNumber">
+                </div>
+                <span class="form-messageOrder"></span>
+            </div>
+            <div class="infoBill-inp-item">
+                <div class="infoBill-inp-item-text">
+                    <p>Email</p>
+                </div>
+                <div class="infoBill-inp-item-input">
+                    <input type="email" placeholder="Nhập email" id="email" name="email">
+                </div>
+                <span class="form-messageOrder"></span>
+            </div>
+            <div class="infoBill-inp-item address">
+                <div class="infoBill-inp-item-text">
+                    <p>Địa chỉ</p>
+                </div>
+                <div class="infoBill-inp-item-input">
+                    <input type="text" placeholder="Nhập địa chỉ" id="address" name="address">
+                </div>
+                <span class="form-messageOrder"></span>
+            </div>
+            <div class="infoBill-inp-item note">
+                <div class="infoBill-inp-item-text">
+                    <p>Ghi chú đơn hàng</p>
+                </div>
+                <div class="infoBill-inp-item-input">
+                    <textarea name="note" id="note" cols="30" rows="5" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa chỉ giao hàng chi tiết hơn"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container__orderUser">
+        <div class="orderUser-title">
+            <p>ĐƠN HÀNG CỦA BẠN</p>
+        </div>
+        <div class="orderUser-cartTotal">
+            <div class="orderUser-cartTotal-header">
+                <p>Sản phẩm</p>
+            </div>
+            <div class="orderUser-cartTotal-items">
+                {{#each product}}
+                <div class="orderUser-cartTotal-item">
+                    <div class="orderUser-cartTotal-item-product">
+                        <p>{{this.name}}</p>
+                        <p>x{{this.quatity}}</p>
+                    </div>
+                    <div class="orderUser-cartTotal-item-price">
+                        <p>{{totalProduct this.price this.quatity}}đ</p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div class="orderUser-cartTotal-total">
+                <div class="orderUser-cartTotal-total-text">
+                    <p>Phí ship</p>
+                </div>
+                <div class="orderUser-cartTotal-total-money">
+                    <p>99,999đ</p>
+                </div>
+            </div>
+            <div class="orderUser-cartTotal-total">
+                <div class="orderUser-cartTotal-total-text">
+                    <p>Tổng</p>
+                </div>
+                <div class="orderUser-cartTotal-total-money">
+                    <p>{{formatNumber shippingFee}}đ</p>
+                </div>
+            </div>
+        </div>
+        <div class="orderUser-payment">
+            <div class="orderUser-payment-item">
+                <input type="radio" name="payment" id="payment1" class="payment-checked" checked value="Trả tiền mặt khi nhận hàng">
+                <label for="payment1">Trả tiền mặt khi nhận hàng</label>
+                <div class="payment-comment">
+                    <p>Trả tiền mặt khi giao hàng</p>
+                </div>
+            </div>
+            <div class="orderUser-payment-line"></div>
+            <div class="orderUser-payment-item">
+                <input type="radio" name="payment" id="payment2" class="payment-checked" value="Chuyển khoản ngân hàng">
+                <label for="payment2">Chuyển khoản ngân hàng</label>
+                <div class="payment-comment">
+                    <p>Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán. Đơn hàng sẽ đươc giao sau khi tiền đã chuyển.</p>
+                </div>
+            </div>
+        </div>
+        <div class="orderUser-btn">
+            <button type="submit" form="infoBill">Đặt hàng</button>
+            <p onclick="backProduct()">Tiếp tục mua hàng</p>
+        </div>
+
+    </div>
+</form>
+<script src="/js/main.js"></script>
+<script defer>
+    Validator({
+        form:'#infoBill',
+        formGroupSelector:'.infoBill-inp-item',
+        errorSelector:'.form-messageOrder',
+        rules:[
+            Validator.isRequired('#firstname','Vui lòng nhập họ của bạn'),
+            Validator.isRequired('#lastname','Vui lòng nhập tên của bạn'),
+            Validator.isRequired('#phoneNumber','Vui lòng nhập số điện thoại của bạn'),
+            Validator.isRequired('#address','Vui lòng nhập địa chỉ nhận hàng của bạn'),
+            Validator.isRequired('#email'),
+            Validator.isEmail('#email'),
+        ],
+        onSubmit: function (data){
+            const uid = function(){
+                return Date.now().toString(36) + Math.random().toString(36).substr(2);
+            }
+            const date= new Date()
+            const url='/cart/order'
+            const options ={
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    data: data,
+                    code:uid(),
+                    time:`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+                    status:'Chưa giao'
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then(() =>{
+                const containerOrder=document.querySelector('.containerOrder')
+                const htmls=`
+                    <div class="notificationOrder">
+                        <div class="notificationOrder-container">
+                            <div class="notificationOrder-title">
+                                <h2>Bạn đã đặt hàng thành công</h2>
+                            </div>
+                            <div class="notificationOrder-btn">
+                                <p onclick="backProduct()">Tiếp tục mua hàng</p>
+                            </div>
+                        </div>
+                    </div>
+                 `
+                containerOrder.insertAdjacentHTML('beforeend',htmls)
+            })
+        }
+    })
+    function backProduct(){
+        return window.location.href='/product'
+    }
+</script>

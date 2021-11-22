@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div class="app">
+        <div class="appAdmin">
+            <div class="admin_header">
+                <div class="admin_logo">
+                    <div><i class="far fa-hand-peace"></i></div>
+                    <div class="admin_logo-name">
+                        <p>20CmShop Admin</p>
+                    </div>
+                </div>
+                <div class="admin_search">
+                    <input type="text" placeholder="Tìm kiếm">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="admin_user">
+                    <div class="admin_user-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="admin_container">
+                <div class="admin_menu">
+                    <div class="admin_item">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <p>Trang chủ</p>
+                    </div>
+                   <div class="admin_item">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <p>Quản lý sản phẩm</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-users-cog"></i>
+                        <p>Quản lý người dùng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-tasks"></i>
+                        <p>Quản lý đơn hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-phone-square"></i>
+                        <p>Câu hỏi từ khách hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-newspaper"></i>
+                        <p>Quản lý tin tức</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Thống kê</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-cogs"></i>
+                        <p>Cài đặt</p>
+                    </div>
+                </div>
+                <div class="admin_body">
+                    <div class="adminDetailOrder-content">
+                        <div class="adminDetailOrder_container">
+                            <div class="adminDetailOrder-title">
+                                <h2>Chi tiết đơn hàng</h2>
+                            </div>
+                            <div class="adminDetailOrder-info">
+                                <h3>THÔNG TIN NHẬN HÀNG</h3>
+                                <div class="adminDetailOrder-info-content">
+                                    <div class="adminDetailOrder-info-content-row ">
+                                        <h3>Họ và tên:</h3>
+                                        <p>{{order.info.firstname}} {{order.info.lastname}}</p>
+                                    </div>
+                                    <div class="adminDetailOrder-info-content-row ">
+                                        <h3>Số điện thoại:</h3>
+                                        <p>{{order.info.phoneNumber}}</p>
+                                    </div>
+                                    <div class="adminDetailOrder-info-content-row ">
+                                        <h3>Email:</h3>
+                                        <p>{{order.info.email}}</p>
+                                    </div>
+                                    <div class="adminDetailOrder-info-content-row ">
+                                        <h3>Địa chỉ:</h3>
+                                        <p>{{order.info.address}}</p>
+                                    </div>
+                                    <div class="adminDetailOrder-info-content-row ">
+                                        <h3>Ghi chú:</h3>
+                                        <p>{{order.info.note}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="adminDetailOrder-products">
+                                <h3>SẢN PHẨM</h3>
+                                <div class="adminDetailOrder-product-row">
+                                    <div class="adminDetailOrder-product-cell sttProduct">
+                                        <h3>STT</h3>
+                                    </div>
+                                    <div class="adminDetailOrder-product-cell nameProduct">
+                                        <h3>Tên sản phẩm</h3>
+                                    </div>
+                                    <div class="adminDetailOrder-product-cell priceProduct">
+                                        <h3>Giá tiền</h3>
+                                    </div>
+                                    <div class="adminDetailOrder-product-cell sizeProduct">
+                                        <h3>Size</h3>
+                                    </div>
+                                    <div class="adminDetailOrder-product-cell quatityProduct">
+                                        <h3>Số lượng</h3>
+                                    </div>
+                                </div>
+                                {{#each order.cart}}
+                                <div class="adminDetailOrder-product-row">
+                                    <div class="adminDetailOrder-product-cell sttProduct">
+                                        <p>{{@index}}</p>
+                                    </div>
+                                    <div class="adminDetailOrder-product-cell nameProduct">
+                                        <p>{{this.name}}</p>
+                                    </div>
+                                    <div class="adminDetailOrder-product-cell priceProduct">
+                                        <p>{{formatNumber this.price}}đ</p>
+                                    </div>
+                                    <div class="adminDetailOrder-product-cell sizeProduct">
+                                        <p>{{this.size}}</p>
+                                    </div>
+                                    <div class="adminDetailOrder-product-cell quatityProduct">
+                                        <p>{{this.quatity}}</p>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                            <div class="adminDetailOrder shipping">
+                                <h3>Tiền ship:</h3>
+                                <p>99,999đ</p>
+                            </div>
+                            <div class="adminDetailOrder totalMoney">
+                                <h3>Tổng hóa đơn:</h3>
+                                <p>{{totalProductOrder order.cart}}đ</p>
+                            </div>
+                            <div class="adminDetailOrder pay">
+                                <h3>Hình thức thanh toán:</h3>
+                                <p>{{order.info.payment}}</p>
+                            </div>
+                            <div class="adminDetailOrder code">
+                                <h3>Mã đơn hàng:</h3>
+                                <p>{{order.code}}</p>
+                            </div>
+                            <div class="adminDetailOrder date">
+                                <h3>Ngày đặt hàng:</h3>
+                                <p>{{order.time}}</p>
+                            </div>
+                            <div class="adminDetailOrder status">
+                                <h3>Tình trạng đơn hàng:</h3>
+                                <p>{{order.status}}</p>
+                            </div>
+                            <div class="adminDetailOrder-operation">
+                                <button onclick="back()">Quay lại</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        function back() {
+            return window.location.href='/admin/order'
+        }
+    </script>
+</body>
+</html>

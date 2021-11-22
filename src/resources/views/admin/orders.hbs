@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div class="app">
+        <div class="appAdmin">
+            <div class="admin_header">
+                <div class="admin_logo">
+                    <div><i class="far fa-hand-peace"></i></div>
+                    <div class="admin_logo-name">
+                        <p>20CmShop Admin</p>
+                    </div>
+                </div>
+                <div class="admin_search">
+                    <input type="text" placeholder="Tìm kiếm">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="admin_user">
+                    <div class="admin_user-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="admin_container">
+                <div class="admin_menu">
+                    <div class="admin_item">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <p>Trang chủ</p>
+                    </div>
+                   <div class="admin_item">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <p>Quản lý sản phẩm</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-users-cog"></i>
+                        <p>Quản lý người dùng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-tasks"></i>
+                        <p>Quản lý đơn hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-phone-square"></i>
+                        <p>Câu hỏi từ khách hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-newspaper"></i>
+                        <p>Quản lý tin tức</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Thống kê</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-cogs"></i>
+                        <p>Cài đặt</p>
+                    </div>
+                </div>
+                <div class="admin_body">
+                    <div class="admin_listOrder-header">
+                        Quản lý đơn hàng
+                    </div>
+                    <div class="admin_listOrder-content">
+                        <div class="admin_listOrder-table">
+                            <div class="admin_listOrder-row">
+                                <div class="admin_listOrder-cell-STT">
+                                    <h3>STT</h3>
+                                </div>
+                                <div class="admin_listOrder-cell-code">
+                                    <h3>Mã đơn hàng</h3>
+                                </div>
+                                <div class="admin_listOrder-cell-price">
+                                    <h3>Giá</h3>
+                                </div>
+                                <div class="admin_listOrder-cell-name">
+                                    <h3>Tên khách hàng</h3>
+                                </div>
+                                <div class="admin_listOrder-cell-phone">
+                                    <h3>Số điện thoại</h3>
+                                </div>
+                                <div class="admin_listOrder-cell-status">
+                                    <h3>Trạng thái</h3>
+                                </div>
+                                <div class="admin_listOrder-cell-operation">
+                                    <h3>Thao tác</h3>
+                                </div>
+                            </div>
+                            {{#each newOrder}}
+                            <div class="admin_listOrder-row">
+                                <div class="admin_listOrder-cell-STT">
+                                    <p>{{@index}}</p>
+                                </div>
+                                <div class="admin_listOrder-cell-code">
+                                    <p>{{this.code}}</p>
+                                </div>
+                                <div class="admin_listOrder-cell-price">
+                                    <p>{{totalProductOrder this.cart}}đ</p>
+                                </div>
+                                <div class="admin_listOrder-cell-name">
+                                    <p>{{this.info.firstname}} {{this.info.lastname}}</p>
+                                </div>
+                                <div class="admin_listOrder-cell-phone">
+                                    <p>{{this.info.phoneNumber}}</p>
+                                </div>
+                                <div class="admin_listOrder-cell-status">
+                                    <p>{{this.status}}</p>
+                                </div>
+                                <div class="admin_listOrder-cell-operation">
+                                    <button onclick="btnViewOrder('{{this.code}}')">View</button>
+                                    <button onclick="btnUpdateOrder('{{this.code}}','{{this.idUser}}')">Cập nhật</button>
+                                    <button onclick="btnDeleteOrder('{{this.code}}','{{this.idUser}}')">Xóa</button>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="admin_listOrder-row none">
+                                <p>Không có đơn hàng nào</p>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        const container=document.querySelector('.admin_container')
+        function btnViewOrder(code) {
+            return window.location.href=`/admin/detailOrder/${code}`
+        }
+        function btnUpdateOrder(code,id){
+            const htmls=`
+                <div class="adminUpdateOrder">
+                    <div class="adminUpdateOrder-content">
+                        <h3>Cập nhật tình trạng đơn hàng</h3>
+                        <div class="adminUpdateOrder-btn">
+                            <div class="adminUpdateOrder-btn-item" onclick="btnInStockOrder('${code}','${id}')">
+                                <p>Chưa giao</p>
+                            </div>
+                            <div class="adminUpdateOrder-btn-item" onclick="btnTransportOrder('${code}','${id}')">
+                                <p>Đang giao</p>
+                            </div>
+                            <div class="adminUpdateOrder-btn-item" onclick="btnCompleteOrder('${code}','${id}')">
+                                <p>Đã giao</p>
+                            </div>
+                            <div class="adminUpdateOrder-btn-item" onclick="btnCancel()">
+                                <p>Thoát</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+            container.insertAdjacentHTML('beforeend',htmls)
+        }
+        function btnDeleteOrder(code,id){
+            const htmls=`
+                <div class="adminUpdateOrder">
+                    <div class="adminUpdateOrder-content">
+                        <h3>Xóa đơn hàng này khỏi hệ thống</h3>
+                        <div class="adminUpdateOrder-btn">
+                            <div class="adminUpdateOrder-btn-item" onclick="btnRemoveOrder('${code}','${id}')">
+                                <p>Xóa đơn</p>
+                            </div>
+                            <div class="adminUpdateOrder-btn-item" onclick="btnCancel()">
+                                <p>Hủy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+            container.insertAdjacentHTML('beforeend',htmls)
+        }
+
+        function btnRemoveOrder(code,id){
+            const url='/admin/deleteOrder'
+            const options={
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body:JSON.stringify({
+                    code:code,
+                    idUser:id,
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then((data)=>{
+                window.location.href='/admin/order'
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        }
+
+        function btnCancel() {
+            const elementUpdate=document.querySelector('.adminUpdateOrder')
+            elementUpdate.remove()
+        }
+        function updateOrderAPI(code,id,status){
+            const url='/admin/updateOrder'
+            const options={
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body:JSON.stringify({
+                    code:code,
+                    idUser:id,
+                    status:status
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then(()=>{
+                window.location.href='/admin/order'
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        }
+        function btnTransportOrder(code,id){
+            updateOrderAPI(code,id,'Đang vận chuyển')
+        }
+        function btnCompleteOrder(code,id){
+            updateOrderAPI(code,id,'Đã giao')
+        }
+        function btnInStockOrder(code,id){
+            updateOrderAPI(code,id,'Chưa giao')
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+.admin_listUsers-header{
+    padding:20px 0;
+    text-align:center;
+    font-size:25px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.admin_listUsers-content{
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+// .admin_listUsers-table{
+
+// }
+.admin_listUsers-row:first-child{
+    background-color: #b39329;
+    border-radius: 10px 10px 0 0;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+.admin_listUsers-row{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.admin_listUsers-cell-STT{
+    flex:5%;
+}
+
+.admin_listUsers-cell-name{
+    flex:20%;
+}
+
+.admin_listUsers-cell-userName{
+    flex:20%;
+}
+
+.admin_listUsers-cell-phone{
+    flex:15%;
+}
+
+.admin_listUsers-cell-email{
+    flex:30%;
+}
+
+.admin_listUsers-cell-operation{
+    flex:10%;
+}
+.admin_listUsers-cell-operation button{
+    height: 30px;
+    outline: none;
+    border-radius: 3px;
+    border: none;
+    font-size:16px;
+    background-color:#b39329;
+    color: #fff;
+    padding:5px;
+    margin-left: 5px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+ }
+.admin_listUsers-cell-operation button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}
+//---------------------------
+.admin_viewUser{
+    position:fixed;
+    width:100%;
+    height:100%;
+}
+.admin_viewUser-container{
+    width: 500px;
+    margin: 100px auto 0 auto;
+    background-color:#f3f3f3;
+    // border: 1px solid #2222;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px 0;
+}
+.admin_viewUser-title{
+    text-align: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    color: #b39329;
+}
+
+.admin_viewUser-info{
+    margin: 10px 30px;
+}
+
+.admin_viewUser-info-row{
+    padding:10px 0;
+    display: flex;
+}
+.admin_viewUser-info-row h3{
+    flex: 1;
+}
+.admin_viewUser-info-row p{
+    flex:2;
+}
+.admin_viewUser-btn{
+    display: flex;
+    justify-content:center;
+}
+.admin_viewUser-btn button{
+    height: 30px;
+    width: 100px;
+    border: none;
+    background-color:#b39329;
+    border-radius: 3px;
+    font-size:16px;
+    color: #fff;
+    cursor: pointer;
+}
+.admin_viewUser-btn button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}
+//---------------------------
+.admin_deleteUser{
+    position:fixed;
+    width:100%;
+    height:100%;
+}
+.admin_deleteUser-container{
+    width: 600px;
+    margin: 100px auto 0 auto;
+    background-color:#f3f3f3;
+    // border: 1px solid #2222;
+    padding: 20px 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px 0;
+}
+.admin_deleteUser-title{
+    text-align: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    color: #b39329;
+}
+.admin_deleteUser-btn{
+    display: flex;
+    justify-content:center;
+    
+}
+.admin_deleteUser-btn button{
+    height: 30px;
+    width: 100px;
+    margin: 10px;
+    border: none;
+    background-color:#b39329;
+    border-radius: 3px;
+    font-size:16px;
+    color: #fff;
+    cursor: pointer;
+}
+.admin_deleteUser-btn button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}
+.admin_listUsers-row.none{
+    justify-content: center;
+}

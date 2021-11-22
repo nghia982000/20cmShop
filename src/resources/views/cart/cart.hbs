@@ -1,0 +1,241 @@
+<div class="containerCart">
+    <div id="toast"></div>
+    <div class="container__title">
+        <h3>GIỎ HÀNG CỦA BẠN</h3>
+    </div>
+    <div class="container__line"></div>
+    <div class="container__content-cart">
+        <div class="container__listproduct">
+            <div class="container__listproduct-border">
+                <div class="table__header">
+                    <div class="cell-product-header">
+                        <p>SẢN PHẨM</p>
+                    </div>
+                    <div class="cell-price-header">
+                        <p>GIÁ</p>
+                    </div>
+                    <div class="cell-quatity-header">
+                        <p>SỐ LƯỢNG</p>
+                    </div>
+                    <div class="cell-total-header">
+                        <p>TỔNG</p>
+                    </div>
+                    <div class="cell-delete-header">
+                        <p>XÓA</p>
+                    </div>
+                </div>
+                <div class="table__content">
+                    {{#each product}}
+                    <div class="table__content-row product-{{this.id}}">
+                        <div class="cell-product">
+                            <div class="cell-product-picture">
+                                <div class="cell-product-img" style="background-image: url({{this.image}})"></div>
+                            </div>
+                            <div class="cell-product-name">
+                                <p>{{this.name}}</p>
+                            </div>
+                        </div>
+                        <div class="cell-priceProduct">
+                            <p class="mobile-cart">Giá:</p>
+                            <div class="cell-price {{this.id}}">
+                                <p>{{formatNumber this.price}}</p>
+                            </div>
+                            <span>đ</span>
+                        </div>
+                        <div class="cell-quatity">
+                            <p class="mobile-cart">Số lượng:</p>
+                            <div class="cell-quatity-sub" onclick="subQuatity('{{this.id}}')">
+                                <i class="fa fa-minus" aria-hidden="true"></i>
+                            </div>
+                            <div class="cell-quatity-number {{this.id}}">
+                                {{this.quatity}}
+                            </div>
+                            <div  class="cell-quatity-add" onclick="addQuatity('{{this.id}}')">
+                                <i  class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="cell-totalProduct">
+                            <p class="mobile-cart">Tổng:</p>
+                            <div class="cell-total {{this.id}}">
+                                <p>{{totalProduct this.price this.quatity}}</p>
+                            </div>
+                            <span>đ</span>
+                        </div>
+                        <div class="cell-delete">
+                            <p class="mobile-cart">Xóa:</p>
+                            <div onclick="deleteProduct('{{this.id}}')" class="cell-delete-border">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    {{else}}
+                    <div class="table__content-row none">
+                        <p>Giỏ hàng trống</p>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            
+            <div class="keepBuying">
+                <p onclick="buyProduct()">Tiếp tục mua hàng</p>
+            </div>
+        </div>
+        <div class="container__pay">
+                <div class="pay-discount">
+                    <div class="discount-inp">
+                        <input type="text" placeholder="Nhập mã giảm giá...">
+                    </div>
+                    <div class="discount-apply">
+                        <p>Áp dụng</p>
+                    </div>
+                </div>
+                <div class="pay-statistic">
+                    <div class="statistic-title">
+                        <h3>Thống kê giỏ hàng</h3>
+                    </div>
+                    <div class="statistic-totalproductcost">
+                        <div class="totalproductcost-text">
+                            <p>Tổng tiền sản phẩm</p>
+                        </div>
+                        <div class="totalproductcost-money">
+                            <div class="totalproductcost-number">
+                                {{formatNumber total}}
+                            </div>
+                            <span>đ</span>
+                        </div>
+                    </div>
+                    <div class="statistic-totalproductcost">
+                        <div class="totalproductcost-text">
+                            <p>Phí ship</p>
+                        </div>
+                        <div class="shippingFee-money">
+                            <div class="shippingFee">
+                                99,999
+                            </div>
+                            <span>đ</span>
+                        </div>
+                    </div>
+                    <div class="statistic-totalmoney">
+                        <div class="totalmoney-text">
+                            <p>Tổng cộng</p>
+                        </div>
+                        <div class="totalmoney">
+                            <div class="totalmoney-number">
+                                {{formatNumber shippingFee}}
+                            </div>
+                            <span>đ</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pay__btn"onclick="butPay()">
+                    <p>Thanh toán</p>
+                </div>
+        </div>
+    </div>
+</div>
+<script src="/js/main.js"></script>
+<script>
+    //Xóa sản phẩm trong giỏ
+    function deleteProduct(index) {
+        fetch('/cart/delete',{
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                index: index,
+            })
+        })
+        .then(response => response.json())
+        .then(()=>{
+            const row=`.product-${index}`
+            const deleteRow=document.querySelector(row)
+            if(deleteRow){
+                deleteRow.remove()
+            }
+            toast({
+                    title: "Thành công!",
+                    message: "Bạn đã xóa sản phẩm khỏi giỏ hàng thành công",
+                    type: "success",
+                    duration: 5000
+                })
+            totalMoney()
+        }
+        )
+        
+    }
+    //giảm số lượng sản của 1 sản phẩm và cập nhật tổng giá tiền 
+    function subQuatity(id){
+        const quatity=document.querySelector(`.cell-quatity-number.${id}`)
+        const price=document.querySelector(`.cell-price.${id}`)
+        const total=document.querySelector(`.cell-total.${id}`)
+        const intPrice=Number.parseInt(price.innerText.split(',').join(''))
+        if(quatity.innerText==1){
+            quatity.innerText=1
+        }
+        else{
+            --(quatity.innerText)
+        }
+        const intQuatity=quatity.innerText
+        const intTotal=intPrice*intQuatity
+        total.innerText=`${formatNumber(intTotal)}`    
+
+        totalMoney()
+        callApiUpdateQuatity(id,intQuatity)
+        
+    }
+    //tăng số lượng sản của 1 sản phẩm và cập nhật tổng giá tiền 
+    function addQuatity(id){
+        const quatity=document.querySelector(`.cell-quatity-number.${id}`)
+        const price=document.querySelector(`.cell-price.${id}`)
+        const total=document.querySelector(`.cell-total.${id}`)
+        const intPrice=Number.parseInt(price.innerText.split(',').join(''))
+        const intQuatity=++(quatity.innerText)
+        const intTotal=intPrice*intQuatity
+        total.innerText=`${formatNumber(intTotal)}` 
+
+        totalMoney()
+        callApiUpdateQuatity(id,intQuatity)
+    }
+    // thêm dấu phẩy vào số tiền
+    function formatNumber(num){
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+    }
+    // thanh toán
+    function butPay(){
+        return window.location.href='/cart/order'
+        
+    }
+    // cập nhật tổng tiền các mặt hàng trước khi xuất đơn
+    function totalMoney(){
+        const EtotalProductsNodelist=document.querySelectorAll('.cell-total')
+        const EtotalProducts=[...EtotalProductsNodelist]
+        const Etotal=document.querySelector('.totalproductcost-number')
+
+        const EtotalMoney=document.querySelector('.totalmoney-number')
+        const shippingFee=Number.parseInt(document.querySelector('.shippingFee').innerText.split(',').join(''))
+
+        const intTotals=EtotalProducts.reduce(function(total,item){
+            return total+Number.parseInt(item.innerText.split(',').join(''))
+        },0)
+
+        Etotal.innerText=`${formatNumber(intTotals)}`
+        EtotalMoney.innerText=`${formatNumber((shippingFee+intTotals))}`
+    }
+    function callApiUpdateQuatity(id,intQuatity){
+        fetch('/account/updateQuatity',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id:id,
+                quatity:intQuatity
+            })
+        })
+        .then(response => response.json())
+        .then((data)=>{
+            console.log(data)
+        })
+    }
+    function buyProduct(){
+        return window.location.href='/product'
+    }
+</script>

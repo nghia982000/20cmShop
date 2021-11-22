@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div class="app">
+        <div class="appAdmin">
+            <div class="admin_header">
+                <div class="admin_logo">
+                    <div><i class="far fa-hand-peace"></i></div>
+                    <div class="admin_logo-name">
+                        <p>20CmShop Admin</p>
+                    </div>
+                </div>
+                <div class="admin_search">
+                    <input type="text" placeholder="Tìm kiếm">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="admin_user">
+                    <div class="admin_user-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="admin_container">
+                <div class="admin_menu">
+                    <div class="admin_item">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <p>Trang chủ</p>
+                    </div>
+                   <div class="admin_item">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <p>Quản lý sản phẩm</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-users-cog"></i>
+                        <p>Quản lý người dùng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-tasks"></i>
+                        <p>Quản lý đơn hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-phone-square"></i>
+                        <p>Câu hỏi từ khách hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-newspaper"></i>
+                        <p>Quản lý tin tức</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Thống kê</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-cogs"></i>
+                        <p>Cài đặt</p>
+                    </div>
+                </div>
+                <div class="admin_body">
+                    <div class="admin_evaluateProduct-header">
+                        Đánh giá của khách hàng về sản phẩm {{nameProduct}}
+                    </div>
+                    <div class="admin_evaluateProduct-content">
+                        <div class="admin_evaluateProduct-table">
+                            <div class="admin_evaluateProduct-row">
+                                <div class="admin_evaluateProduct-cell-name">
+                                    <h3>Tên</h3>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-email">
+                                    <h3>Email</h3>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-star">
+                                    <h3>Số sao</h3>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-comment">
+                                    <h3>Nhận xét</h3>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-status">
+                                    <h3>Trạng thái</h3>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-operation">
+                                    <h3>Thao tác</h3>
+                                </div>
+                            </div>
+                            {{#each evaluate}}
+                            <div class="admin_evaluateProduct-row">
+                                <div class="admin_evaluateProduct-cell-name">
+                                    <p>{{this.name}}</p>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-email">
+                                    <p>{{this.email}}</p>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-star">
+                                    <p>{{conver this.star}} Sao</p>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-comment">
+                                    <p>{{this.comment}}</p>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-status">
+                                    <p>{{this.status}}</p>
+                                </div>
+                                <div class="admin_evaluateProduct-cell-operation">
+                                    <button onclick="btnBrowse('{{this.id}}','{{../idProduct}}')">Duyệt</button>
+                                    <button onclick="btnDelete('{{this.id}}','{{../idProduct}}')">Xóa</button>
+                                    <button onclick="back()">Quay lại</button>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="admin_evaluateProduct-row none">
+                                Không có đánh giá nào.
+                                <a href="/admin/product">Quay lại</a>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        const container=document.querySelector('.admin_container')
+        function btnBrowse(idEvaluate,idProduct){
+            const htmls=`
+                <div class="adminEvaluaProduct">
+                    <div class="adminEvaluaProduct-content">
+                        <h3>Duyệt đánh giá này</h3>
+                        <div class="adminEvaluaProduct-btn">
+                            <div class="adminEvaluaProduct-btn-item" onclick="Browse('${idEvaluate}','${idProduct}')">
+                                <p>Duyệt</p>
+                            </div>
+                            <div class="adminEvaluaProduct-btn-item" onclick="NotBrowse('${idEvaluate}','${idProduct}')">
+                                <p>Không duyệt</p>
+                            </div>
+                            <div class="adminEvaluaProduct-btn-item" onclick="cancel()">
+                                <p>Thoát</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+            container.insertAdjacentHTML('beforeend',htmls)
+        }
+        function BrowseApi(idEvaluate,idProduct,status) {
+            const url='/admin/browseEvaluate'
+            const options = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body:JSON.stringify({
+                    idEvaluate: idEvaluate,
+                    idProduct: idProduct,
+                    status:status,
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then(() =>{
+                window.location.href=`/admin/evaluateProduct/${idProduct}`
+            })
+            .catch(error =>{
+                console.log('lỗi api')
+            })
+        }
+        function btnDelete(idEvaluate,idProduct) {
+            const htmls=`
+                <div class="adminEvaluaProduct">
+                    <div class="adminEvaluaProduct-content">
+                        <h3>Xóa đánh giá này khỏi hệ thống</h3>
+                        <div class="adminEvaluaProduct-btn">
+                            <div class="adminEvaluaProduct-btn-item" onclick="deleteEvaluate('${idEvaluate}','${idProduct}')">
+                                <p>Xóa</p>
+                            </div>
+                            <div class="adminEvaluaProduct-btn-item" onclick="cancel()">
+                                <p>Thoát</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+            container.insertAdjacentHTML('beforeend',htmls)
+        }
+        function deleteEvaluate(idEvaluate,idProduct){
+            const url='/admin/deleteEvaluate'
+            const options = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body:JSON.stringify({
+                    idEvaluate: idEvaluate,
+                    idProduct: idProduct,
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then(() =>{
+                window.location.href=`/admin/evaluateProduct/${idProduct}`
+            })
+            .catch(error =>{
+                console.log('lỗi api')
+            })
+        }
+        function cancel(){
+            const elementNotification=document.querySelector('.adminEvaluaProduct')
+            elementNotification.remove()
+        }
+        function back() {
+            window.location.href='/admin/product'
+        }
+        function Browse(idEvaluate,idProduct){
+            BrowseApi(idEvaluate,idProduct,'Đã duyệt')
+        }
+        function NotBrowse(idEvaluate,idProduct){
+            BrowseApi(idEvaluate,idProduct,'Không duyệt')
+        }
+    </script>
+</body>
+</html>

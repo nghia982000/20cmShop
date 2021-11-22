@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+    font-family: 'Maven Pro', sans-serif;
+}
+//-----------------------------------------------------------
+@import 'layout/header';
+@import 'layout/footer';
+@import 'pages/home';
+@import 'pages/product';
+@import 'pages/news';
+@import 'pages/detailNews';
+@import 'pages/contact';
+@import 'pages/account';
+@import 'pages/cart';
+@import 'pages/detail';
+@import 'pages/login';
+@import 'pages/forgotPassword';
+@import 'pages/register';
+@import 'pages/order';
+@import 'pages/toastMessage';
+@import 'pages/detailOrder';
+@import 'admin/admin';
+@import 'admin/adminProduct';
+@import 'admin/adminEditProduct';
+@import 'admin/adminUsers';
+@import 'admin/adminOrder';
+@import 'admin/adminDetailOrder';
+@import 'admin/adminEvaluateProduct';
+@import 'admin/adminContact';
+@import 'admin/adminNews';
+@import 'admin/adminEditNews';
+@import 'admin/adminLogin';
+@import 'admin/adminAccount';
+@import 'admin/adminSetting';
+@import 'admin/adminStatistical';
+@import 'responsive/iPad';
+@import 'responsive/mobile';

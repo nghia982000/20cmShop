@@ -1,0 +1,49 @@
+<div class="containerNews">
+    <div class="container__header">
+        <p>TIN TỨC</p>
+    </div>
+    <div class="btnback" onclick="back()">
+        <p>Trở về</p>
+    </div>
+    <div class="container__content">
+        <div class="container__content-posts">
+            <div class="container__content-news">
+                <div class="content-news-header">
+                    <p>Tin tức</p>
+                </div>
+                <div class="content-news-header">
+                    <p>{{formatDatetime data.createdAt}}</p>
+                </div>
+                <div class="content-news-title">
+                    <h3>{{data.title}}</h3>
+                </div>
+                <div class="content-news-line"></div>
+                <div class="content-news-picture">
+                    <div class="content-news-img" style="background-image: url({{converArraytoString data.picture 1}})"></div>
+                </div>
+                <div class="content-news-contentHeader">
+                    <p>{{data.header}}</p>
+                </div>
+                <div class="content-news-contentBody">
+                    <p>{{data.body}}</p>
+                </div>
+                <div class="content-news-picture">
+                    <div class="content-news-img" style="background-image: url({{converArraytoString data.picture 0}})"></div>
+                </div>
+                <div class="content-news-contentEnd">
+                    <p>{{data.end}}</p>
+                </div>
+                <div class="homeNewsFrame">
+                    <div class="homeNews" onclick="back()">
+                        <p>Đọc tiếp tin tức khác</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function back() {
+        window.location.href='/news'
+    }
+</script>

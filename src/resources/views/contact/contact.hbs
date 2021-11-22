@@ -1,0 +1,121 @@
+<div class="containerContact">
+    <div id="toast"></div>
+    <div class="container__background-title">
+        <div class="container__background-title-img" style="background-image: url(/img/background_title.png)"></div>
+        <div class="container__background-title-text">
+            <p>LIÊN HỆ</p>
+        </div>
+    </div>
+    <div class="container__contact_content">
+        <div class="container__contact-map" >
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d979.6658189611794!2d106.74407382920111!3d10.837059999517539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9ccbe2d1a844ebcc!2zMTDCsDUwJzEzLjQiTiAxMDbCsDQ0JzQwLjYiRQ!5e0!3m2!1svi!2s!4v1636883214522!5m2!1svi!2s" class="mapContent" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="container__contact-detail">
+            <div class="container__contact-detail-first">
+                <div class="container__contact-detail-picture">
+                    <div class="container__contact-detail-img" style="background-image:url(/img/logoHelmet.png)"></div>
+                </div>
+                <div class="container__contact-detail-info">
+                    <div class="container__contact-detail-info-item">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <p>74/2k1 Đ.36 Linh Đông Tp.Thủ Đức Tp.HCM </p>
+                    </div>
+                    <div class="container__contact-detail-info-item">
+                        <i class="fa fa-phone-square" aria-hidden="true"></i>
+                        <p>0969696969</p>
+                    </div>
+                    <div class="container__contact-detail-info-item">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <p>nghiasin1@gmail.com</p>
+                    </div>
+                    <div class="container__contact-detail-info-item">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                        <p>github.com/nqkiax20cm</p>
+                    </div>                       
+                </div>
+            </div>
+            <form class="container__contact-detail-form" id="contact-detail-form">
+                <div class="container__contact-detail-form-header">
+                    <h3>LIÊN HỆ VỚI CHÚNG TÔI</h3>
+                </div>
+                <div class="container__contact-detail-form-inp">
+                    <div class="container__contact-detail-form-inp-infuser">
+                        <div class="container__contact-detail-form-inp-infuser-item">
+                            <input type="text" placeholder="Họ và tên" id="name" name="name">
+                            <span class="form-messageContact"></span>
+                        </div>
+                        <div class="container__contact-detail-form-inp-infuser-item">
+                            <input type="email"placeholder="Email" id="email" name="email">
+                            <span class="form-messageContact"></span>
+                        </div>
+                        <div class="container__contact-detail-form-inp-infuser-item">
+                            <input type="text"placeholder="Số điện thoại" id="phoneNumber" name="phoneNumber">
+                            <span class="form-messageContact"></span>
+                        </div>
+                        <div class="container__contact-detail-form-inp-infuser-item">
+                            <input type="text"placeholder="Địa chỉ" id="address" name="address">
+                            <span class="form-messageContact"></span>
+                        </div>
+                        <div class="container__contact-detail-form-inp-infuser-item message">
+                            <textarea cols="30" rows="5" placeholder="Lời nhắn" id="message" name="message"></textarea>
+                            <span class="form-messageContact"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container__contact-detail-form-send">
+                    <button type="submit">Gửi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/main.js"></script>
+<script>
+    Validator({
+        form:'#contact-detail-form',
+        formGroupSelector:'.container__contact-detail-form-inp-infuser-item',
+        errorSelector:'.form-messageContact',
+        rules:[
+            Validator.isRequired('#name','Vui lòng nhập tên'),
+            Validator.isRequired('#address','Vui lòng nhập địa chỉ'),
+            Validator.isRequired('#phoneNumber','Vui lòng nhập số điện thoại'),
+            Validator.isRequired('#message','Vui lòng nhập lời nhắn'),
+            Validator.isRequired('#email','Vui lòng nhập email'),
+            Validator.isEmail('#email'),
+        ],
+        onSubmit: function (data){
+            const url='/contact'
+            const options ={
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    data: data
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then((data)=>{
+                const containerContact=document.querySelector('.containerContact')
+                const htmls=`
+                    <div class="notificationContact">
+                        <div class="notificationContact-container">
+                            <div class="notificationContact-title">
+                                <h2>Bạn đã gửi lời nhắn đến shop thành công</h2>
+                            </div>
+                            <div class="notificationContact-btn">
+                                <p onclick="cancel()">Đóng</p>
+                            </div>
+                        </div>
+                    </div>
+                 `
+                containerContact.insertAdjacentHTML('beforeend',htmls)
+            })
+            .catch((data)=>{
+                console.log(data)
+            })
+        }
+    })
+    function cancel(){
+        window.location.href='/contact'
+    }
+</script>

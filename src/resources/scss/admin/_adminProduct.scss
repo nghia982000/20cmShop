@@ -1,0 +1,273 @@
+
+//body-----------------------------------------------------------------------------------
+.admin_product-header{
+    padding:20px 0;
+    text-align:center;
+    font-size:25px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.admin_product-content{
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+.admin_btnAddProcduct{
+    position: fixed;
+    right: 40px;
+}
+.admin_btnAddProcduct p{
+    height:40px;
+    width: 150px;
+    background-color: #b39329;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:18px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+// .admin_product-table{
+    
+// }
+.admin_product-table-row:first-child{
+    background-color: #b39329;
+    border-radius: 10px 10px 0 0;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+.admin_product-table-row{
+    display: flex;
+    font-size:18px;
+    padding:15px 25px;
+    border-bottom: 1px solid #dddddd;
+    align-items: center;
+}
+.admin_product-table-cell-STT{
+    flex:5%;
+}
+.admin_product-table-cell-picture{
+    flex: 30%;
+}
+.table-cell-picture-item{
+    display: flex;
+    padding:0 10px;
+}
+.table-cell-picture-frame{
+    flex: 1;
+    max-width: 33.3%;
+    padding:5px;
+}
+
+.table-cell-picture-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.admin_product-table-cell-name{
+    flex: 25%;
+}
+
+.admin_product-table-cell-price{
+    flex: 15%;
+}
+.admin_product-table-cell-quatity{
+    flex: 10%;
+}
+.admin_product-table-cell-operation{
+    flex: 15%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.admin_product-table-cell-operation button{
+   height: 30px;
+   outline: none;
+   border-radius: 3px;
+   border: none;
+   font-size:16px;
+   background-color:#b39329;
+   color: #fff;
+   padding:5px;
+   margin: 5px;
+   cursor: pointer;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+}
+.admin_product-table-cell-operation button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}
+// .table-cell-operation-edit{
+    
+// }
+
+// .table-cell-operation-remove{
+    
+// }
+//----------------------------------------------------------
+.admin_addProcduct{
+    position:fixed;
+    width:100%;
+    height:100%;
+}
+.admin_addProduct-content{
+    background-color: #f3f3f3;
+    width:700px;
+    // border: 1px solid #dddddd;
+    margin: 80px auto 0 auto;
+    padding:20px;
+    height:600px;
+    overflow-y: auto;
+    border-radius:10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.admin_addProduct-content::-webkit-scrollbar{
+    display: none;
+}
+.addProduct-title{
+    padding:10px;
+    font-size:25px;
+    text-align:center;
+    color:#b39329;
+    text-transform: uppercase;
+}
+
+.addProduct-input{
+    padding:10px;
+    font-size:20px;
+    
+}
+.addProduct-input input{
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    height:30px;
+    padding-left: 10px;
+    width:100%;
+}
+.addProduct-input h3{
+    padding:10px 0;
+    text-transform: uppercase;
+}
+.addProduct-input textarea{
+    outline: none;
+    height:100px;
+    padding-left: 10px;
+    width:100%;
+}
+.uploadImageAddProduct input{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.uploadImageAddProduct label{
+    height: 35px;
+    color: #fff;
+    width: 200px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    background-color: #b39329;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+
+}
+.uploadImageAddProduct label:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0,0.3);
+}
+#displayImg{
+    display: flex;
+    justify-content: space-around;
+}
+#displayImg img{
+    width: 200px;
+    height: 200px;
+}
+//-----------------------------------------
+.admin_deleteProduct{
+    position:fixed;
+    width:100%;
+    height:100%;
+}
+.admin_deleteProduct-container{
+    width: 600px;
+    margin: 100px auto 0 auto;
+    background-color:#f3f3f3;
+    // border: 1px solid #2222;
+    padding: 20px 0;
+    border-radius:10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}
+.admin_deleteProduct-title{
+    text-align: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    color: #b39329;
+}
+.admin_deleteProduct-btn{
+    display: flex;
+    justify-content:center;
+    
+}
+.admin_deleteProduct-btn button{
+    height: 30px;
+    width: 100px;
+    margin: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    outline: none;
+    border: none;
+    background-color:#b39329;
+    cursor: pointer;
+    font-size:16px;
+    color: #fff;
+    border-radius: 3px;
+
+}
+.admin_deleteProduct-btn button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.addProduct{
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    padding: 50px;
+}
+.addProduct button{
+    height:30px;
+    width:100px;
+    background-color: #b39329;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-family:'Maven Pro', sans-serif;
+    color: #fff;
+    font-size:16px;
+    cursor: pointer;
+}
+.addProduct p{
+    height:30px;
+    width:100px;
+    background-color: #b39329;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size:16px;
+    cursor: pointer;
+}
+.addProduct p:hover,
+.addProduct button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0,0.3);
+}

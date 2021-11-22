@@ -1,0 +1,322 @@
+<div class="containerDetail">
+    <div id="toast"></div>
+    <div class="container__detailProduct">
+        <div class="container__detailProduct-title">
+            <p>CHI TIẾT SẢN PHẨM</p>
+        </div>
+        <div class="detailProduct-content">
+            <div class="detailProduct-picture">
+                <div class="detailProduct-main">
+                    <div class="detailProduct-img" style="background-image:url({{converArraytoString product.image 0}}) "></div>
+                </div>
+                <div class="detailProduct-pictureOther">
+                    <div class="detailProduct-pictureOther-frame">
+                        <div class="detailProduct-imgOther active" style="background-image:url({{converArraytoString product.image 0}})" onclick="active('{{converArraytoString product.image 0}}')"></div>
+                    </div>
+                    <div class="detailProduct-pictureOther-frame">
+                        <div class="detailProduct-imgOther" style="background-image:url({{converArraytoString product.image 1}}) " onclick="active('{{converArraytoString product.image 1}}')"></div>
+                    </div>
+                    <div class="detailProduct-pictureOther-frame">
+                        <div class="detailProduct-imgOther" style="background-image:url({{converArraytoString product.image 2}}) " onclick="active('{{converArraytoString product.image 2}}')"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="detailProduct-info">
+                <div class="detailProduct-info-name">
+                    <h3>{{product.name}}</h3>
+                </div>
+                <div class="detailProduct-info-price">
+                    <p>Giá:</p>
+                    <p>{{formatNumber product.price}}đ</p>
+                </div>
+                <div class="detailProduct-info-price">
+                    <p>Tình trạng:</p>
+                    <p>{{product.status}}</p>
+                </div>
+                <div class="detailProduct-info-descriptionComment">
+                    {{!-- <ul>
+                        <li>Vỏ bằng nhựa ABS nguyên sinh</li>
+                        <li>Trọng lượng: 1500g ± 50g</li>
+                    </ul> --}}
+                    <div class="detailProduct-info-descriptionComment-size">
+                        <p>Size:</p>
+                        <select id="size">
+                            <option value="l">L</option>
+                            <option value="xl">XL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="detailProduct-info-quatity">
+                    <p>Số lượng:</p>
+                    <div class="detailProduct-info-quatity-sub" onclick="subQuatity()">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                    </div>
+                    <div class="detailProduct-info-quatity-number">
+                        1
+                    </div>
+                    <div class="detailProduct-info-quatity-add" onclick="addQuatity()">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="detailProduct-info-btn">
+                    <p onclick="addToCart('{{product.name}}','{{product.price}}','{{converArraytoString product.image 0}}')">Thêm vào giỏ</p>
+                </div>
+                <div class="detailProduct-info-btn">
+                    <p onclick="backProduct()">Tiếp tục mua hàng</p>
+                    <p onclick="goCart()">Đến giỏ hàng</p>
+                </div>
+            </div>
+        </div>
+        <div class="detailProduct-descriptionEvaluate">
+            <div class="detailProduct-descriptionEvaluate-tab">
+                <p class="detailProduct-descriptionEvaluate-tab-item active">MÔ TẢ</p>
+                <p class="detailProduct-descriptionEvaluate-tab-item">ĐÁNH GIÁ</p>
+            </div>
+            <div class="detailProduct-descriptionEvaluate-item active">
+                <div class="detailProduct-description">
+                    <h3>{{product.name}}</h3>
+                    <p>{{product.description.overview}}</p>
+                    <h3>ĐẶC ĐIỂM <span>{{product.name}}</span></h3>
+                    <ul>
+                        {{#each product.description.detail}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+            <div class="detailProduct-descriptionEvaluate-item ">
+                <div class="detailProduct-evaluate">
+                    <div class="detailProduct-evaluate-container">
+                        <h3>Đánh giá</h3>
+                        <div class="detailProduct-evaluate-star">
+                            <p>{{avgStar}}/5</p>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                        <div class="detailProduct-evaluate-content">
+                            {{#each evaluate}}
+                            <div class="detailProduct-evaluate-content-item">
+                                <div class="evaluate-star">
+                                    {{#each this.star}}
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    {{/each}}
+                                </div>
+                                <div class="evaluate-userName">
+                                    <p>{{this.name}}</p>
+                                </div>
+                                <div class="commentProduct">
+                                    <p>{{this.comment}}</p>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="detailProduct-evaluate-content-item">
+                                Chưa có đánh giá
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <form class="detailProduct-evaluate-form" id="detailProduct-evaluate-form">
+                        <div class="evaluate-form-user">
+                            <p>Đánh giá của bạn</p>
+                            <div class="evaluate-form-star">
+                                <label for="oneStar"class="evaluate-form-star-item" >
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input type="radio" name="evaluate" id="oneStar" value="1" hidden>
+                                <div class="evaluate-form-star-seperate">|</div>
+                                <label for="twoStar"  class="evaluate-form-star-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input type="radio" name="evaluate"id="twoStar"  value="2" hidden>
+                                <div class="evaluate-form-star-seperate">|</div>
+                                <label for="threeStar" class="evaluate-form-star-item" >
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input type="radio" name="evaluate"id="threeStar"  value="3" hidden>
+                                <div class="evaluate-form-star-seperate">|</div>
+                                <label for="fourStar" class="evaluate-form-star-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input type="radio" name="evaluate"  id="fourStar"  value="4" hidden>
+                                <div class="evaluate-form-star-seperate">|</div>
+                                <label for="fiveStar" class="evaluate-form-star-item active">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </label>
+                                <input type="radio" name="evaluate" id="fiveStar" checked  value="5" hidden>
+                            </div>
+                        </div>
+                        <div class="evaluate-form commentUser">
+                            <p>Nhận xét của bạn</p>
+                            <div class="evaluate-form-inp">
+                                <textarea name="comment" cols="30" rows="10" placeholder="Nhận xét về sản phẩm" id="comment"></textarea>
+                            </div>
+                            <span class="form-messageDetailProduct"></span>
+                        </div>
+                        <div class="evaluate-form userName">
+                            <p>Tên</p>
+                            <div class="evaluate-form-inp">
+                                <input type="text" placeholder="Tên của bạn" name="name" id="name">
+                            </div>
+                            <span class="form-messageDetailProduct"></span>
+                        </div>
+                        <div class="evaluate-form email">
+                            <p>Email</p>
+                            <div class="evaluate-form-inp">
+                                <input type="email" placeholder="Email của bạn" name="email" id="email">
+                            </div>
+                            <span class="form-messageDetailProduct"></span>
+                        </div>
+                        <input type="text" name="idProduct" value="{{product._id}}" hidden>
+                        <div class="btnSendEvaluate">
+                            <button type="submit">Gửi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/main.js"></script>
+<script>
+    const size=document.querySelector('#size')
+    var sizeText='l'
+    size.onchange=function(e){
+        return sizeText=e.target.value
+    }
+    const quatity=document.querySelector('.detailProduct-info-quatity-number')
+
+    function addToCart(name,price,image) {
+        const uid = function(){
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+        if(document.cookie){
+            fetch('/product/addToCart',{
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quatity:count,
+                    size:sizeText,
+                    id:uid()
+                })
+            })
+            .then(response => response.json())
+            .then(data=>{
+                console.log(data)
+            })
+            toast({
+                title: "Thành công!",
+                message: "Bạn đã thêm sản phẩm vào giỏ hàng thành công",
+                type: "success",
+                duration: 5000
+            })
+        }
+        else{
+            window.location.href="/account/formLogin"
+        }
+    }
+    function goCart(){
+        return window.location.href='/cart'
+    }
+    function backProduct(){
+        return window.location.href='/product'
+    }
+    var count=1
+    function subQuatity(){
+        if(count<=1){
+            count=1
+        }
+        else{
+            count--
+        }
+        return quatity.innerHTML=`${count}`
+    }
+    function addQuatity(){
+        count++
+        return quatity.innerHTML=`${count}`
+    }
+    function tab(){
+        const elementTab=document.querySelectorAll('.detailProduct-descriptionEvaluate-tab-item')
+        const tabContent=document.querySelectorAll('.detailProduct-descriptionEvaluate-item')
+        elementTab.forEach((tab,index)=>{
+            const content=tabContent[index]
+            tab.onclick=()=>{
+                switch(index){
+                    case 0:
+                        document.querySelector('.detailProduct-descriptionEvaluate-tab-item.active').classList.remove('active')
+                        document.querySelector('.detailProduct-descriptionEvaluate-item.active').classList.remove('active')
+                        tab.classList.add('active')
+                        content.classList.add('active')
+                        break
+                    case 1:
+                        document.querySelector('.detailProduct-descriptionEvaluate-tab-item.active').classList.remove('active')
+                        document.querySelector('.detailProduct-descriptionEvaluate-item.active').classList.remove('active')
+                        tab.classList.add('active')
+                        content.classList.add('active')
+                        break
+                }
+            }
+        })
+
+    }
+    tab()
+    Validator({
+        form:'#detailProduct-evaluate-form',
+        formGroupSelector:'.evaluate-form',
+        errorSelector:'.form-messageDetailProduct',
+        rules:[
+            Validator.isRequired('#comment','Vui lòng nhập nhận xét của bạn'),
+            Validator.isRequired('#name','Vui lòng nhập tên của bạn'),
+            Validator.isRequired('#email'),
+            Validator.isEmail('#email'),
+        ],
+        onSubmit: function (data){
+            const url='/product/comment'
+            const options ={
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    data: data
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then((data)=>{
+                console.log(data)
+            })
+            .catch((data)=>{
+                console.log(data)
+            })
+            toast({
+                title: "Thành công!",
+                message: "Bạn đã gửi đánh giá thành công",
+                type: "success",
+                duration: 5000
+            })
+            
+        }
+    })
+    const elementStar=document.querySelectorAll('.evaluate-form-star-item')
+    elementStar.forEach((item)=>{
+        item.onclick=()=>{
+            document.querySelector('.evaluate-form-star-item.active').classList.remove('active')
+            item.classList.add('active')
+        }
+    })
+    function active(url){
+        document.querySelector('.detailProduct-img').style.backgroundImage=`url(${url})`
+    }
+
+
+</script>

@@ -1,0 +1,148 @@
+.detailOrder_container{
+    width:700px;
+    margin: 130px auto 50px auto;
+    background-color: #f8f1f1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    padding:50px 20px;
+}
+
+.detailOrder-title{
+    text-align: center;
+    font-size:20px;
+    text-transform: uppercase;
+}
+
+
+
+.detailOrder-info{
+    padding: 20px 0;
+}
+.detailOrder-info-content{
+    padding:10px 0;
+}
+.detailOrder-info-content-row{
+    display: flex;
+    padding:10px;
+}
+.detailOrder-info-content-row h3{
+    flex: 1;
+}
+.detailOrder-info-content-row p{
+    flex:1;
+}
+//----------------------------------------------------------------
+.detailOrder-products {
+    padding:10px 0 30px 0;
+}
+.detailOrder-product-row{
+    display: flex;
+    padding:10px;
+    border-bottom: 1px solid #dddddd;
+}
+.detailOrder-product-cell{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.detailOrder-product-cell.sttProduct{
+    flex:5%;
+    max-width: 5%;
+}
+.detailOrder-product-cell.nameProduct{
+    flex:45%;
+    max-width: 45%;
+}
+.detailOrder-product-cell.priceProduct{
+    flex:30%;
+    max-width: 30%;
+}
+.detailOrder-product-cell.sizeProduct{
+    flex:10%;
+    max-width: 10%;
+}
+.detailOrder-product-cell.quatityProduct{
+    flex:15%;
+    max-width: 15%;
+}
+
+//------------------
+
+.detailOrder{
+    text-transform: uppercase;
+    display: flex;
+    padding: 10px 0;
+}
+.detailOrder h3{
+    flex: 1;
+}
+.detailOrder p{
+    flex: 1;
+}
+//----------------------------------------------------------------
+.detailOrder-operation{
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    margin: 20px;
+}
+.detailOrder-operation button{
+    height:40px;
+    width:100px;
+    outline: none;
+    border: none;
+    background-color:#b39329;
+    font-size:18px;
+    color:#fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.detailOrder-operation button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}
+//---------------------
+.deleteOrder{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index: 5;
+    top: 0;
+    right: 0;
+    // background-color:#b39329;
+}
+.deleteOrder-container{
+    width: 600px;
+    margin: 100px auto 0 auto;
+    background-color:#f3f3f3;
+    border: 1px solid #2222;
+    padding: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+}
+.deleteOrder-title{
+    text-align: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    color: #b39329;
+}
+.deleteOrder-btn{
+    display: flex;
+    justify-content:center;
+}
+.deleteOrder-btn button{
+    height: 30px;
+    width: 100px;
+    margin: 10px;
+    outline: none;
+    background-color:#b39329;
+    border-radius:3px;
+    border:none;
+    font-size:16px;
+    color:#fff;
+    cursor: pointer;
+}
+.deleteOrder-btn button:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3)
+}

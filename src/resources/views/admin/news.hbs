@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div class="app">
+        <div class="appAdmin">
+            <div class="admin_header">
+                <div class="admin_logo">
+                    <div><i class="far fa-hand-peace"></i></div>
+                    <div class="admin_logo-name">
+                        <p>20CmShop Admin</p>
+                    </div>
+                </div>
+                <div class="admin_search">
+                    <input type="text" placeholder="Tìm kiếm">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="admin_user">
+                    <div class="admin_user-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="admin_container">
+                <div class="admin_menu">
+                    <div class="admin_item">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <p>Trang chủ</p>
+                    </div>
+                   <div class="admin_item">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <p>Quản lý sản phẩm</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-users-cog"></i>
+                        <p>Quản lý người dùng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-tasks"></i>
+                        <p>Quản lý đơn hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-phone-square"></i>
+                        <p>Câu hỏi từ khách hàng</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-newspaper"></i>
+                        <p>Quản lý tin tức</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Thống kê</p>
+                    </div>
+                    <div class="admin_item">
+                        <i class="fas fa-cogs"></i>
+                        <p>Cài đặt</p>
+                    </div>
+                </div>
+                <div class="admin_body">
+                    <div class="admin_btnAddNews">
+                        <p onclick="addNews()">
+                            Thêm bài viết
+                        </p>
+                    </div>
+                    <div class="admin_news-header">
+                        Quản lý bài viết
+                    </div>
+                    <div class="admin_news-content">
+                        <div class="admin_news-table">
+                            <div class="admin_news-table-row">
+                                <div class="admin_news-table-cell-STT">
+                                    <h3>STT</h3>
+                                </div>
+                                <div class="admin_news-table-cell-title">
+                                    <h3>Tiêu đề</h3>
+                                </div>
+                                <div class="admin_news-table-cell-operation">
+                                    <h3>Thao tác</h3>
+                                </div>
+                            </div>
+                            {{#each news}}
+                            <div class="admin_news-table-row">
+                                <div class="admin_news-table-cell-STT">
+                                    <p>{{@index}}</p>
+                                </div>
+                                <div class="admin_news-table-cell-title">
+                                    <p>{{this.title}}</p>
+                                </div>
+                                <div class="admin_news-table-cell-operation">
+                                    <div class="table-cell-operation-edit">
+                                        <button onclick="btnEditNews('{{this._id}}')">Chỉnh sửa</button>
+                                    </div>
+                                    <div class="table-cell-operation-remove">
+                                        <button onclick="btnDeleteNews('{{this._id}}')">Xóa</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="admin_news-table-row none">
+                                <p>Không có bài viết nào</p>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+    <script>
+        const $=document.querySelector.bind(document)
+        const $$=document.querySelectorAll.bind(document)
+        const container=document.querySelector('.admin_container')
+
+        function ImagesFileAsURL() {
+                var fileSelected = document.getElementById('imageNews').files;
+                if (fileSelected.length > 0) {
+                    for (var i = 0; i < fileSelected.length; i++) {
+                        var fileToLoad = fileSelected[i];
+                        var fileReader = new FileReader();
+                        fileReader.onload = function(fileLoaderEvent) {
+                            var srcData = fileLoaderEvent.target.result;
+                            var newImage = document.createElement('img');
+                            newImage.src = srcData;
+                            document.getElementById('displayImgNews').innerHTML += newImage.outerHTML;
+                        }
+                        fileReader.readAsDataURL(fileToLoad);
+                    }
+
+                }
+            }
+        function addNews(){
+            const htmls=`
+                <div class="admin_addNews">
+                    <form class="admin_addNews-content"method="post" enctype="multipart/form-data" >
+                        <div class="addNews-title">
+                            <h3>Thêm bài viết mới</h3>
+                        </div>
+                        <div class="addNews-input">
+                            <h3>Tiêu đề</h3>
+                            <input type="text" placeholder="Tiêu đề bài viết" id="title" name="title">
+                        </div>
+                        <div class="addNews-input">
+                            <h3>Mở bài</h3>
+                            <textarea placeholder="Mở bài" cols="30" rows="10"id="header"name="header"></textarea>
+                        </div>
+                        <div class="addNews-input">
+                            <h3>Thân bài</h3>
+                            <textarea placeholder="Thân bài" cols="30" rows="10"id="body"name="body"></textarea>
+                        </div>
+                        <div class="addNews-input">
+                            <h3>Kết bài</h3>
+                            <textarea placeholder="Tổng quan" cols="30" rows="10"id="end"name="end"></textarea>
+                        </div>
+                        <div class="addNews-input">
+                            <h3>Hình ảnh</h3>
+                            <div class="uploadImageAddNews">
+                                    <input class="addImageNews" type="file" name="imageNews" id='imageNews'onchange="ImagesFileAsURL()"placeholder="Hình ảnh" multiple >
+                                    <label for="imageNews">
+                                        <i class="fas fa-upload"></i>
+                                        Tải ảnh mới lên
+                                    </label>
+                                </div>
+                            <div id="displayImgNews"></div>
+                        </div>
+                        <div class="addNews">
+                            <button type="submit">Thêm</button>
+                            <p onclick="back()">Thoát</p>
+                        </div>
+                    </form>
+                </div>
+            `
+            container.insertAdjacentHTML('beforeend',htmls)
+        }
+        function back() {
+            const elementBack = document.querySelector('.admin_addNews')
+            elementBack.remove()
+        }
+        function btnDeleteNews(id) {
+            const htmls=`
+                <div class="admin_deleteNews">
+                    <div class="admin_deleteNews-container">
+                        <div class="admin_deleteNews-title">
+                            <h2>Xóa bài viết khỏi hệ thống</h2>
+                        </div>
+                        <div class="admin_deleteNews-btn">
+                            <button onclick="btnDelete('${id}')">Đồng ý</button>
+                            <button onclick="btnCancel()">Hủy bỏ</button>
+                        </div>
+                    </div>
+                </div>
+            `
+            container.insertAdjacentHTML('beforeend',htmls)
+        }
+        function btnDelete(id){
+            const url=`/admin/deleteNews/${id}`
+            const options={
+                method: "DELETE",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: id,
+                })
+            }
+            fetch(url, options)
+            .then(response => response.json())
+            .then(()=>{
+                return window.location.href='/admin/news'
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        }
+        function btnCancel(){
+            const elementCancel = document.querySelector('.admin_deleteNews')
+            elementCancel.remove()
+        }
+        function btnEditNews(id) {
+            return window.location.href=`/admin/editNews/${id}`
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<div class="containerAccount">
+    <div id="toast"></div>
+    
+        <div class="container__content-account">
+            <div class="container__navbar" >
+                <div class="container__navbar-border">
+                    <div class="container__navbar-item active" >
+                        <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
+                        <span>Chào...</span>
+                    </div>
+                    <div class="container__navbar-item"  >
+                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                        <span>Đơn hàng của bạn</span>
+                    </div>
+                    <div class="container__navbar-item " >
+                        <i class="fa fa-address-book" aria-hidden="true"></i>
+                        <span>Chi tiết tài khoản</span>
+                    </div>
+                    <div class="container__navbar-item">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        <span>Đăng xuất</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container__detail">
+                    <div class="container__detail__content active">
+                        <div class="webcome">
+                            <p>Chào mừng {{info.firstname }} {{info.lastname}} đã đến với 20CmShop</p>
+                            <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
+                        </div>
+                        <div class="webcome_image-frame" >
+                            <div class="webcome_image" style="background-image:url(/img/pictureShop.jpg)"></div>
+                        </div>
+                    </div>
+                    <div class="container__detail__content">
+                        <div class="content-order-title">
+                                <h3>Đơn hàng của bạn</h3>
+                            </div>
+                        <div class="content-order-table">
+                            <div class="content-order-row first-child">
+                                <div class="content-order-cell cell-stt">
+                                    <h3>STT</h3>
+                                </div>
+                                <div class="content-order-cell cell-nameproduct">
+                                    <h3>MÃ ĐƠN HÀNG</h3>
+                                </div>
+                                <div class="content-order-cell cell-date">
+                                    <h3>THỜI GIAN</h3>
+                                </div>
+                                <div class="content-order-cell cell-price">
+                                    <h3>GIÁ</h3>
+                                </div>
+                                <div class="content-order-cell cell-status">
+                                    <h3>TRẠNG THÁI</h3>
+                                </div>
+                                <div class="content-order-cell cell-action">
+                                    <h3>THAO TÁC</h3>
+                                </div>
+                            </div>
+                            {{#each info.order}}
+                            <div class="content-order-row">
+                                <div class="content-order-cell cell-stt">
+                                    <p>{{@index}}</p>
+                                </div>
+                                <div class="content-order-cell cell-nameproduct">
+                                    <p>{{this.code}}</p>
+                                </div>
+                                <div class="content-order-cell cell-date">
+                                    <p>{{this.time}}</p>
+                                </div>
+                                <div class="content-order-cell cell-price">
+                                    <p>{{totalProductOrder this.cart}}đ</p>
+                                </div>
+                                <div class="content-order-cell cell-status">
+                                    <p>{{this.status}}</p>
+                                </div>
+                                <div class="content-order-cell cell-action">
+                                    <a href="/cart/detailOrder/{{this.code}}">Xem chi tiết</a>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="content-order-row none">
+                                <p>Không có đơn hàng nào</p>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="container__detail__content">
+                        <div class="detail__content-account">
+                            <form class="detail__content-account-update">
+                                <div class="account-update-title">
+                                    <h3>Chi tiết tài khoản</h3>
+                                </div>
+                                <div class="account-update-info">
+                                    <div class="account-update-info-item">
+                                        <div class="account-update-info-text">
+                                            <p>Họ</p>
+                                        </div>
+                                        <div class="account-update-info-inp">
+                                            <input type="text" placeholder="Họ" value="{{info.firstname}}" name="firstname">
+                                        </div>
+                                    </div>
+                                    <div class="account-update-info-item">
+                                        <div class="account-update-info-text">
+                                            <p>Tên</p>
+                                        </div>
+                                        <div class="account-update-info-inp">
+                                            <input type="text" placeholder="Tên" value="{{info.lastname}}"name="lastname">
+                                        </div>
+                                    </div>
+                                    <div class="account-update-info-item">
+                                        <div class="account-update-info-text">
+                                            <p>Số điện thoại</p>
+                                        </div>
+                                        <div class="account-update-info-inp">
+                                            <input type="text" placeholder="Số điện thoại"value="{{info.phoneNumber}}"name="phoneNumber">
+                                        </div>
+                                    </div>
+                                    <div class="account-update-info-item">
+                                        <div class="account-update-info-text">
+                                            <p>Email</p>
+                                        </div>
+                                        <div class="account-update-info-inp">
+                                            <input type="Email" placeholder="Email"value="{{info.email}}"name="email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-update-btn" onclick="updateInfo()">
+                                    <p>Cập nhật thông tin</p>
+                                </div>
+                            </form>
+                            <form  class="detail__content-account-password" id="updatePassword">
+                                <div class="account-password-title">
+                                    <h3>Đổi mật khẩu</h3>
+                                </div>
+                                <div class="account-password">
+                                    <div class="account-password-inp">
+                                        <input type="password" placeholder="Mật khẩu hiện tại" id="passwordOld" name="passwordOld">
+                                    </div>
+                                    <span class="form-message-password"></span>
+                                </div>
+                                <div class="account-password">
+                                    <div class="account-password-inp">
+                                        <input type="password" placeholder="Mật khẩu mới"id="passwordNew" name="passwordNew">
+                                    </div>
+                                    <span class="form-message-password"></span>
+                                </div>
+                                <div class="account-password-btn">
+                                    <button type="submit">Đổi mật khẩu</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    
+</div>
+<script src="/js/main.js"></script>
+<script>
+    function updateInfo(){
+        const firstname = document.querySelector('input[name="firstname"]').value
+        const lastname = document.querySelector('input[name="lastname"]').value
+        const email = document.querySelector('input[name="email"]').value
+        const phoneNumber = document.querySelector('input[name="phoneNumber"]').value
+        const url='/account/updateInfo'
+        const options={
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                phoneNumber: phoneNumber,
+            })
+        }
+        fetch(url,options)
+            .then(response => response.json())
+            .then(()=>{
+                return toast({
+                    title: "Thành công!",
+                    message: "Cập nhật thông tin cá nhân thành công",
+                    type: "success",
+                    duration: 5000
+                })
+            })
+    }
+    
+    Validator({
+        form:'#updatePassword',
+        formGroupSelector:'.account-password',
+        errorSelector:'.form-message-password',
+        rules:[
+            Validator.isRequired('#passwordOld','Vui lòng nhập mật khẩu của bạn'),
+            Validator.isRequired('#passwordNew','Vui lòng nhập mật khẩu mới của bạn'),
+            ],
+        onSubmit:function(){
+            const passwordOld = document.querySelector('input[name="passwordOld"]').value
+            const passwordNew = document.querySelector('input[name="passwordNew"]').value
+            const url='/account/updatePassword'
+            const options={
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    passwordOld: passwordOld,
+                    passwordNew: passwordNew
+                })
+            }
+            fetch(url,options)
+                .then(response => response.json())
+                .then((data)=>{
+                    if(data.error) {
+                    toast({
+                            title: "Thất bại!",
+                            message: "Sai mật khẩu mời bạn nhập lại",
+                            type: "warning",
+                            duration: 5000
+                        })
+                    }
+                    else{
+                        toast({
+                            title: "Thành công!",
+                            message: "Đổi mật khẩu thành công",
+                            type: "success",
+                            duration: 5000
+                        })
+                    }
+                })
+                .catch(()=>{
+                    console.log('lỗi')
+                })
+            }
+    })
+
+    const elementTabs=document.querySelectorAll(".container__navbar-item")
+    const elementContent=document.querySelectorAll(".container__detail__content")
+    function tabPage(){
+        elementTabs.forEach(function(tab,index){
+            const page=elementContent[index]
+            tab.onclick=function(){
+                switch(index){
+                    case 0:
+                        document.querySelector('.container__navbar-item.active').classList.remove('active')
+                        document.querySelector('.container__detail__content.active').classList.remove('active')
+                        tab.classList.add("active")
+                        page.classList.add("active")
+                        break
+                    case 1:
+                        document.querySelector('.container__navbar-item.active').classList.remove('active')
+                        document.querySelector('.container__detail__content.active').classList.remove('active')
+                        tab.classList.add("active")
+                        page.classList.add("active")
+                        break
+                    case 2:
+                        document.querySelector('.container__navbar-item.active').classList.remove('active')
+                        document.querySelector('.container__detail__content.active').classList.remove('active')
+                        tab.classList.add("active")
+                        page.classList.add("active")
+                        break
+                    case 3:
+                        const containerAccount=document.querySelector('.containerAccount')
+                        const htmls=`
+                                <div class="logoutAccount">
+                                    <div class="logoutAccount-container">
+                                        <div class="logoutAccount-title">
+                                            <h2>Đăng xuất khỏi tài khoản này</h2>
+                                        </div>
+                                        <div class="logoutAccount-btn">
+                                            <button onclick="btnAgree()">Đồng ý</button>
+                                            <button onclick="btnCancel()">Hủy bỏ</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        containerAccount.insertAdjacentHTML('beforeend',htmls)
+                        break
+                }
+            }
+        })
+    }
+    tabPage()
+    function delete_cookie(name) {
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+    function btnAgree(){
+        document.querySelector('.container__navbar-item.active').classList.remove('active')
+        tab.classList.add("active")
+        const name='token'
+        delete_cookie(name)
+        window.location.href="/account/formLogin"
+    }
+    function btnCancel(){
+        const ElogoutAccount=document.querySelector('.logoutAccount')
+        ElogoutAccount.remove()
+    }
+</script>

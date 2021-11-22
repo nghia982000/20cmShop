@@ -1,0 +1,337 @@
+<div class="slide">
+    <div class="slider active" style="background-image:url(/img/slider.jpg)"></div>
+    <div class="slider" style="background-image:url(/img/slider2.png)"></div>
+    <div class="buttonSlide">
+        <button class="slide-arrow slide-arrow-left">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+        <button class="slide-arrow slide-arrow-right">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+<div class="service">
+    <div class="service__item">
+        <div class="service__item-content">
+            <div class="service__item-logo">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+            </div>
+            <h3>FREESHIP</h3>
+            <p>Freeship toàn quốc</p>
+        </div>
+    </div>
+    <div class="service__item">
+        <div class="service__item-content">
+            <div class="service__item-logo">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </div>
+            <h3>90 NGÀY ĐỔI TRẢ</h3>
+            <p>Cho phép khách hàng đổi trả sản phẩm trong vòng 90 ngày</p>
+        </div>
+    </div>
+    <div class="service__item">
+        <div class="service__item-content">
+            <div class="service__item-logo">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            </div>
+            <h3>BẢO MẬT THANH TOÁN</h3>
+            <p>Website cam kết bảo mật thông tin khách hàng</p>
+        </div>
+    </div>
+    <div class="service__item">
+        <div class="service__item-content">
+            <div class="service__item-logo">
+                <i class="fa fa-comments" aria-hidden="true"></i>
+            </div>
+            <h3>TƯ VẤN 24/7</h3>
+            <p>Luôn có nhân viên tư vấn online 24/24. Hỗ trọ chăm sóc khách hàng</p>
+        </div>
+    </div>
+</div>
+<div class="adv">
+    <div class="adv__left">
+        <div class="adv__left-border">
+            <div class="adv__left-img" style="background-image: url(/img/banner1.png)"></div>
+        </div>
+    </div>
+    <div class="adv__right">
+        <div class="adv__right-item">
+            <div class="adv__right-item-border">
+                <div  class="adv__right-item-img" style="background-image: url(/img/Banner2.jpg)"></div>
+            </div>
+        </div>
+        <div class="adv__right-item">
+            <div class="adv__right-item-border">
+                <div class="adv__right-item-img" style="background-image: url(/img/banner3.png);background-color: aqua;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product">
+    <div class="product__header">
+        <div class="product__header-item tab__active">BÁN CHẠY</div>
+        <div class="product__header-item">NỔI BẬT</div>
+        <div class="product__header-item">MỚI VỀ</div>
+    </div>
+    <div class="product__content-border">
+        <div class="product__content">
+            {{#each products}}
+            <div class="product__content-item">
+                <div class="product__content-item-boderimg">
+                    <a  class="remove-activeMenu" href="/product/{{this._id}}">
+                        <div class="product__content-item-img" style="background-image:url({{converArraytoString this.image 0}})"></div>
+                    </a>
+                </div>
+                <div class="product__content-item-name">{{this.name}}</div>
+                <div class="product__content-item-price">{{formatNumber this.price}}đ</div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="btnProduct left ">
+            <button><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+        </div>
+        <div class="btnProduct right ">
+            <button><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</div>
+<div class="news" style="background-image: url(/img/background-news.jpg)">
+    <div class="news__body">
+        <div class="news__header">
+            <p>TIN TỨC</p>
+        </div>
+        <div class="news__container-border">
+            <div class="news__container">
+                {{#each news}}
+                <div class="news__content">
+                    <a href="/news/detailNews/{{this._id}}">
+                        <div class="news__content-item">
+                            <div class="news__content-item-img" style="background-image: url({{converArraytoString this.picture 1}})"></div>
+                            <div class="news__content-item-title">
+                                <p>{{this.title}}</p>
+                            </div>
+                            <div class="news__content-item-date">
+                                <p>{{formatDatetime this.createdAt}}</p>
+                            </div>
+                            <div class="news__content-item-line"></div>
+                            <div class="news__content-item-content">
+                                <p>{{this.header}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+            <div class="btnNews left ">
+                <button><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+            </div>
+            <div class="btnNews right ">
+                <button><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="trademark-border">
+    <div class="trademark">
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-agv.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-arai.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-kyt.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-l52.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-yohe.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-shoei.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-royal.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-torc.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-agv.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-arai.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-kyt.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-l52.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-yohe.png)" ></div>
+        </div>
+        <div class="trademark__item">
+            <div class="trademark__item-img" style="background-image: url(/img/logo-shoei.png)" ></div>
+        </div>
+    </div>
+</div>
+<script defer >
+    const slides=$$('.slider')
+    const btn=$$('.slide-arrow')
+    const btnPleft=$('.btnProduct.left')
+    const btnPright=$('.btnProduct.right')
+    const itemProduct=$$('.product__content-item')
+    const productList=$('.product__content') 
+    const btnNleft=$('.btnNews.left')
+    const btnNright=$('.btnNews.right')
+    const itemNews=$$('.news__content')
+    const newsList=$('.news__container')
+
+
+    let activeSlide=0
+    btn.forEach(function(item,index){
+        item.onclick=function(){
+            switch(index){
+                case 0:
+                    activeSlide--
+                    if(activeSlide < 0){
+                        activeSlide=slides.length-1
+                    }
+                    setActive(activeSlide)
+                    break
+                case 1:
+                    activeSlide++
+                    if(activeSlide > slides.length-1){
+                        activeSlide=0
+                    }
+                    setActive(activeSlide)
+                    break
+            }
+        }
+    })
+    function setActive(index){
+        slides.forEach(slide =>slide.classList.remove('active'))
+        slides[index].classList.add('active')
+    }
+    setInterval(function(){
+        setActive(activeSlide)
+        activeSlide++
+        if(activeSlide > slides.length-1){
+            activeSlide=0
+        }
+    },5000)
+
+
+    var scrollAmount=0
+    var scrollPerClick=productList.clientWidth
+
+    btnPleft.onclick=() => {
+        productList.scrollTo({
+            top:0,
+            left:(scrollAmount-=scrollPerClick),
+            behavior:'smooth'
+        })
+        if(scrollAmount < 0){
+            scrollAmount=0
+        }
+
+    }
+
+    btnPright.onclick=() => {
+        if(scrollAmount < productList.scrollWidth - productList.clientWidth-1){
+            productList.scrollTo({
+                top:0,
+                left:(scrollAmount+=scrollPerClick),
+                behavior:'smooth'
+            })
+        }
+    }
+
+    var scrollAmountNews=0
+    var scrollPerClickNews=newsList.clientWidth
+
+    btnNleft.onclick=() => {
+        newsList.scrollTo({
+            top:0,
+            left:(scrollAmountNews-=scrollPerClickNews),
+            behavior:'smooth'
+        })
+        if(scrollAmountNews < 0){
+            scrollAmountNews=0
+        }
+
+    }
+
+    btnNright.onclick=() => {
+        if(scrollAmountNews < newsList.scrollWidth - newsList.clientWidth-1){
+            newsList.scrollTo({
+                top:0,
+                left:(scrollAmountNews+=scrollPerClickNews),
+                behavior:'smooth'
+            })
+        }
+    }
+
+    const tab=document.querySelectorAll('.product__header-item')
+    tab.forEach((item,index) => {
+        item.onclick=() => {
+            const remove=document.querySelector('.product__header-item.tab__active')
+            if(remove){
+                remove.classList.remove('tab__active')
+            }
+            switch (index) {
+                case 0:
+                    tabCategory('Bán chạy')
+                    item.classList.add('tab__active')
+                    break
+                case 1:
+                    tabCategory('Nổi bật')
+                    item.classList.add('tab__active')
+                    break
+                case 2:
+                    tabCategory('Mới về')
+                    item.classList.add('tab__active')
+                    break
+            }
+        }
+    })
+
+    function tabCategory(item){
+        const url='/tabLevel'
+        const options={
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({
+                item: item,
+            })
+        }
+        fetch(url,options)
+        .then(response => response.json())
+        .then(data => {
+            const listProduct=document.querySelector('.product__content')
+            const htmls=data.map(item =>{
+                return`
+                    <div class="product__content-item">
+                    <div class="product__content-item-boderimg">
+                        <a  class="remove-activeMenu" href="/product/${item._id}">
+                            <div class="product__content-item-img" style="background-image:url(${item.image})"></div>
+                        </a>
+                    </div>
+                    <div class="product__content-item-name">${item.name}</div>
+                    <div class="product__content-item-price">${formatNumber(item.price)}đ</div>
+            </div>
+                `
+            })
+            listProduct.innerHTML=htmls.join('')
+        })
+        .catch(error => {
+            console.log('Lỗi API')
+        })
+        
+    }
+    function formatNumber(num){
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+    }
+</script>
