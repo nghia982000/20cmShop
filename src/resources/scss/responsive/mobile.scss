@@ -313,8 +313,22 @@
     .logIn-form-item-inp{
         padding: 0 5px;
     }
-    .form-message{
-        font-size: 10px;
+    .logIn-form-item .form-message{
+        font-size: 12px;
+        padding:0 5px;
+    }
+    //form register-----------------------------------------------------------------------
+    .containerRegister{
+        width: 90%;
+        margin-top: 100px;
+        padding: 10px;
+    }
+    .register-form-item-inp{
+        padding: 0 5px;
+    }
+    .register-form-item .form-message{
+        font-size: 12px;
+        padding:0 5px;
     }
     //detaiproduct-------------------------------------------------------------------
     .containerDetail{

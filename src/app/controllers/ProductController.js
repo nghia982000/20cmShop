@@ -73,6 +73,9 @@ class ProductController {
         .then(data=>{
             res.json(data)
         })
+        .catch(()=>{
+            console.log('lỗi')
+        })
     }
     //[POST]/product
     search(req, res,next){

@@ -54,7 +54,7 @@
                 <p>Mật khẩu</p>
             </div>
             <div class="register-form-item-inp">
-                <input id='password'name='password' type="password" placeholder="Nhập mật khẩu của bạn">
+                <input id='password'name='password' type="password" placeholder="Nhập mật khẩu">
             </div>
             <span class="form-message"></span>
         </div>
@@ -79,9 +79,9 @@
         formGroupSelector:'.register-form-item',
         errorSelector:'.form-message',
         rules:[
-            Validator.isRequired('#firstname','Vui lòng nhập họ của bạn'),
-            Validator.isRequired('#lastname','Vui lòng nhập tên của bạn'),
-            Validator.isRequired('#phoneNumber','Vui lòng nhập số điện thoại của bạn'),
+            Validator.isRequired('#firstname','Vui lòng nhập họ'),
+            Validator.isRequired('#lastname','Vui lòng nhập tên'),
+            Validator.isRequired('#phoneNumber','Vui lòng nhập số điện thoại'),
             Validator.isRequired('#userName','Vui lòng nhập tên đăng nhập'),
             Validator.isRequired('#email'),
             Validator.isEmail('#email'),

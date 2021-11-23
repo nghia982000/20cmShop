@@ -5925,6 +5925,10 @@ html {
     width: 60%;
   }
 
+  .containerRegister {
+    width: 60%;
+  }
+
   .containerDetail {
     padding-top: 80px;
   }
@@ -6412,8 +6416,24 @@ html {
     padding: 0 5px;
   }
 
-  .form-message {
-    font-size: 10px;
+  .logIn-form-item .form-message {
+    font-size: 12px;
+    padding: 0 5px;
+  }
+
+  .containerRegister {
+    width: 90%;
+    margin-top: 100px;
+    padding: 10px;
+  }
+
+  .register-form-item-inp {
+    padding: 0 5px;
+  }
+
+  .register-form-item .form-message {
+    font-size: 12px;
+    padding: 0 5px;
   }
 
   .containerDetail {
