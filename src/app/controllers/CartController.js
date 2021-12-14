@@ -11,7 +11,7 @@ class CartController {
         res.render('cart/cart',{
             product:product,
             total:total,
-            shippingFee:total+99999,
+            shippingFee:total+0,
         })
     }
     //[patch]/delete
@@ -45,7 +45,7 @@ class CartController {
         res.render('cart/order',{
             product:product,
             total:total,
-            shippingFee:total+99999,
+            shippingFee:total+0,
         })
     }
     //midleware kiểm tra đăng nhập

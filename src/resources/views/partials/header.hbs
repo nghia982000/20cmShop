@@ -2,7 +2,7 @@
     <div class="header__menu_icon" onclick="menuTab()">
         <i class="fa fa-bars" aria-hidden="true"></i>
     </div>
-    <div class="header__logo">
+    <div class="header__logo" onclick="logoTab()">
         <div><i class="fa fa-hand-peace-o" aria-hidden="true"></i></div>
         <div class="header__logo-name">
             <p>20CmShop</p>
@@ -10,27 +10,27 @@
     </div>
     <div class="header__menu">
         <div class="header__menu-item">
-            <p class="header__menu-item-logo">
+            {{!-- <p class="header__menu-item-logo">
                 <i class="fa fa-home" aria-hidden="true"></i>
-            </p>
+            </p> --}}
             <p>Trang chủ</p>
         </div>
         <div class="header__menu-item">
-            <p class="header__menu-item-logo">
+            {{!-- <p class="header__menu-item-logo">
                 <img src="/img/logoHelmet_1.svg" class="logohelmet">
-            </p>
+            </p> --}}
             <p>Sản phẩm</p>
         </div>
         <div class="header__menu-item">
-            <p class="header__menu-item-logo">
+            {{!-- <p class="header__menu-item-logo">
                 <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-            </p>
+            </p> --}}
             <p>Tin tức</p>
         </div>
         <div class="header__menu-item">
-            <p class="header__menu-item-logo">
+            {{!-- <p class="header__menu-item-logo">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-            </p>
+            </p> --}}
             <p>Liên hệ</p>
         </div>
     </div>
@@ -91,65 +91,65 @@
     const $=document.querySelector.bind(document)
     const $$=document.querySelectorAll.bind(document)
     const tabs=$$('.header__menu-item')
-    const logo=$$('.header__menu-item-logo')
+    //const logo=$$('.header__menu-item-logo')
     const cart=$('.header__option-cart')
     const login=$('.header__option-user-account-login')
     const register=$('.header__option-user-account-register')
     const MENU_STORAGE_KEY='HELMET'
 
-    var app={
-        config:JSON.parse(sessionStorage.getItem(MENU_STORAGE_KEY)),
-        setconfig:function(key,value){
-            this.config[key]=value
-            sessionStorage.setItem(MENU_STORAGE_KEY,JSON.stringify(this.config))
-        },
-    }
+    //var app={
+    //    config:JSON.parse(sessionStorage.getItem(MENU_STORAGE_KEY)),
+    //    setconfig:function(key,value){
+    //        this.config[key]=value
+    //        sessionStorage.setItem(MENU_STORAGE_KEY,JSON.stringify(this.config))
+    //    },
+    //}
     function tabPage(tabs){
         tabs.forEach(function(tab,index){
             tab.onclick=function(){
                 switch(index){
                     case 0:
                         window.location.href ='/'
-                        app.setconfig('menu',index)
+                        //app.setconfig('menu',index)
                         break
                     case 1:
                         window.location.href ='/product'
-                        app.setconfig('menu',index)
+                        //app.setconfig('menu',index)
                         break
                     case 2:
                         window.location.href ='/news'
-                        app.setconfig('menu',index)
+                        //app.setconfig('menu',index)
                         break
                     case 3:
                         window.location.href ='/contact'
-                        app.setconfig('menu',index)
+                        //app.setconfig('menu',index)
                         break
                 }
             }
         })
     }
-    function loadAC(){
-        app.config=(app.config===null)?({menu:0}):app.config
-        if(app.config.menu===4){
-            $('.header__menu-item-logo').classList.remove('logo-active')
-        }else{
-            logo[app.config.menu].classList.add('logo-active')
-        }
-    }
+    //function loadAC(){
+    //    app.config=(app.config===null)?({menu:0}):app.config
+    //    if(app.config.menu===4){
+    //        $('.header__menu-item-logo').classList.remove('logo-active')
+    //    }else{
+    //        logo[app.config.menu].classList.add('logo-active')
+    //    }
+    //}
     cart.onclick=function(){
         window.location.href='/cart'
-        app.setconfig('menu',4)
+        //app.setconfig('menu',4)
     }
     login.onclick=function(){
         window.location.href='/account/formLogin'
-        app.setconfig('menu',4)
+        //app.setconfig('menu',4)
     }
     register.onclick=function(){
         window.location.href='/account/formRegister'
-        app.setconfig('menu',4)
+        //app.setconfig('menu',4)
     }
     tabPage(tabs)
-    loadAC()
+    //loadAC()
     function account(){
         return window.location.href='/account'
     }
@@ -167,4 +167,8 @@
     }
     const menuTabItem=document.querySelectorAll('.menuTab-item')
     tabPage(menuTabItem)
+
+    function logoTab(){
+        window.location.href ='/'
+    }
 </script>

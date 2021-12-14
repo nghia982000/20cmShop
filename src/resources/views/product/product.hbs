@@ -150,6 +150,7 @@
     function quickSearch(){
         const searchInput=document.querySelector('input[name="search"]').value
         tabCategory(searchInput)
+        document.querySelector('input[name="search"]').value=''
     }
 
     const elementSelect=document.querySelector('#container__header-tools-select')
