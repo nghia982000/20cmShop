@@ -680,7 +680,11 @@ html {
 .product__content-item-name {
   text-align: center;
   font-weight: bold;
-  padding: 10px;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  margin-bottom: 10px;
 }
 
 .product__content-item-price {

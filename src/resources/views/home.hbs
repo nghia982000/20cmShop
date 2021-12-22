@@ -297,7 +297,9 @@
             }
         }
     })
-
+    function itemToArray(arr,index){
+        return arr[index]
+    }
     function tabCategory(item){
         const url='/tabLevel'
         const options={
@@ -316,7 +318,7 @@
                     <div class="product__content-item">
                     <div class="product__content-item-boderimg">
                         <a  class="remove-activeMenu" href="/product/${item._id}">
-                            <div class="product__content-item-img" style="background-image:url(${item.image})"></div>
+                            <div class="product__content-item-img" style="background-image:url(${itemToArray(item.image,0)})"></div>
                         </a>
                     </div>
                     <div class="product__content-item-name">${item.name}</div>
